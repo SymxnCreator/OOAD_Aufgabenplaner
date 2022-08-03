@@ -1,5 +1,7 @@
 package sample.Models;
 
+import sample.Enums.TaskPriority;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -13,19 +15,62 @@ public class Task
     private String title;
 
     /**
-     * Gibt an, wann die Aufgabe fällig ist. Test
+     * Gibt die Wichtigkeit der Aufgabe an.
+     */
+    private TaskPriority priority;
+
+    /**
+     * Gibt an, wann die Aufgabe fällig ist.
+     * (Optional)
      */
     private LocalDate endDate;
+
+    /**
+     * Gibt an, wann der Nutzer an die Aufgabe erinnert wird.
+     * (Optional)
+     */
+    private LocalDate notificationDate;
+
+    /**
+     * Gibt die Notiz der Aufgabe an.
+     * (Optional)
+     */
+    private String note;
 
     /**
      * Gibt an, ob die Aufgabe erledigt wurde oder nicht.
      */
     private boolean isFinished;
 
-    public Task(String title, LocalDate endDate, boolean isFinished)
+
+    /**
+     * Konstruktor zur Erstellung einer neuen Aufgabe
+     * @param title Der Name der Aufgabe.
+     * @param priority Die Wichtigkeit der Aufgabe.
+     */
+    public Task(String title, TaskPriority priority)
     {
         this.title = title;
+        this.priority = priority;
+        this.isFinished = false;
+    }
+
+    /**
+     * Konstruktor zur Wiederherstellung der Aufgaben
+     * @param title Der Name der Aufgabe.
+     * @param priority Die Wichtigkeit der Aufgabe.
+     * @param endDate Das Datum, wann die Aufgabe fällig ist.
+     * @param notificationDate Das Datum, wann die Erinnerung der Aufgabe ist.
+     * @param note Die Notiz der Aufgabe.
+     * @param isFinished Ist die Aufgabe erledigt?
+     */
+    public Task(String title, TaskPriority priority, LocalDate endDate, LocalDate notificationDate, String note, boolean isFinished)
+    {
+        this.title = title;
+        this.priority = priority;
         this.endDate = endDate;
+        this.notificationDate = notificationDate;
+        this.note = note;
         this.isFinished = isFinished;
     }
 
@@ -59,5 +104,17 @@ public class Task
 
     public void setFinished(boolean finished) {
         isFinished = finished;
+    }
+
+    public TaskPriority getPriority() {
+        return priority;
+    }
+
+    public LocalDate getNotificationDate() {
+        return notificationDate;
+    }
+
+    public String getNote() {
+        return note;
     }
 }

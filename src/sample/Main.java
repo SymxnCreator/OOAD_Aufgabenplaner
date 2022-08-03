@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Enums.TaskPriority;
 import sample.Models.Task;
 import sample.Models.TaskList;
 import sample.Services.StorageService;
@@ -27,13 +28,13 @@ public class Main extends Application
 
     public static void main(String[] args) throws IOException
     {
-        launch(args);
+        //launch(args);
 
         System.out.println("Hallo");
 
         TaskList taskList = new TaskList("Meine Aufgaben");
-        Task task1 = new Task("Sauber machen", LocalDate.now(), false);
-        Task task2 = new Task("Wäsche waschen", LocalDate.now(), true);
+        Task task1 = new Task("Sauber machen", TaskPriority.High);
+        Task task2 = new Task("Wäsche waschen", TaskPriority.Low);
         taskList.add(task1);
         taskList.add(task2);
 
