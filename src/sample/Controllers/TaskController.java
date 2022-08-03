@@ -21,7 +21,6 @@ public class TaskController implements INotify
     private Parent root;
 
     public void switchToStatisken(ActionEvent event)throws IOException {
-        System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/StatistikenView.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
