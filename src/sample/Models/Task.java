@@ -1,8 +1,11 @@
 package sample.Models;
 
+import sample.Enums.NotificationTime;
 import sample.Enums.TaskPriority;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
 import java.util.Date;
 
 public class Task
@@ -112,6 +115,26 @@ public class Task
 
     public LocalDate getNotificationDate() {
         return notificationDate;
+    }
+
+    public void setNotificationDate(NotificationTime notificationTime) {
+        if (endDate != null) {
+            switch (notificationTime) {
+                case Hour: {
+                    this.notificationDate = endDate.minus(1, ChronoUnit.HOURS);
+                    break;
+                }
+                case Day: {
+                    this.notificationDate = endDate.minusDays(1);
+                    break;
+                }
+                case Week: {
+                    this.notificationDate = endDate.minusWeeks(1);
+                    break;
+                }
+                default: break;
+            }
+        }
     }
 
     public String getNote() {
