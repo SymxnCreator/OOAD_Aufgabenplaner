@@ -20,14 +20,14 @@ public class Main extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("Views/MainView.fxml"));
         primaryStage.setTitle("Aufgabenplaner");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) throws IOException
     {
-        //launch(args);
+        launch(args);
 
         System.out.println("Hallo");
 
