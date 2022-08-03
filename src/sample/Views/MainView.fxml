@@ -26,8 +26,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Einstellungen" GridPane.rowIndex="1" />
-            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Statistiken" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStatisken" text="Einstellungen" GridPane.rowIndex="1" />
+            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStatisken" text="Statistiken" />
          </children>
       </GridPane>
       <Separator halignment="LEFT" orientation="VERTICAL" prefHeight="799.0" prefWidth="167.0" valignment="BOTTOM" GridPane.columnIndex="1" GridPane.rowSpan="2" />
