@@ -24,9 +24,17 @@ public class TaskList
      * Fügt der Liste eine neue Aufgabe hinzu.
      * @param task Die hinzuzufügende Aufgabe.
      */
-    public void add(Task task)
+    public boolean add(Task task)
     {
-        this.tasks.add(task);
+        return this.tasks.add(task);
+    }
+
+    /**
+     * Löscht eine Aufgabe aus der Liste
+     * @param task Die zulöschende Aufgabe.
+     */
+    public boolean remove(Task task) {
+        return this.tasks.remove(task);
     }
 
     public String getName() {

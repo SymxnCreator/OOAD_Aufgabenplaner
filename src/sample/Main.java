@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Enums.NotificationTime;
 import sample.Enums.TaskPriority;
 import sample.Models.Task;
 import sample.Models.TaskList;
@@ -35,6 +36,9 @@ public class Main extends Application
         TaskList taskList = new TaskList("Meine Aufgaben");
         Task task1 = new Task("Sauber machen", TaskPriority.High);
         Task task2 = new Task("Wäsche waschen", TaskPriority.Low);
+        task2.setNote("Hwello");
+        task2.setEndDate(LocalDate.of(2022, 8, 3));
+        task2.setNotificationDate(NotificationTime.Day);
         taskList.add(task1);
         taskList.add(task2);
 

@@ -140,4 +140,12 @@ public class Task
     public String getNote() {
         return note;
     }
+
+    public void setPriority(TaskPriority priority) {
+        this.priority = priority;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 }
