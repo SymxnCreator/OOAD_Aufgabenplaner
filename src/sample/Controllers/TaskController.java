@@ -3,22 +3,32 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import sample.Interfaces.INotify;
 import sample.Models.Task;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class TaskController implements INotify
+public class TaskController implements INotify, Initializable
 {
 
 
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    @FXML
+    private ListView<Button> GroupListView;
+
+    Button[] groups = {new Button("Meine Aufgaben")};
 
     public void switchToStatisken(ActionEvent event)throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/StatistikenView.fxml"));
@@ -44,6 +54,13 @@ public class TaskController implements INotify
     @Override
     public void notifiy(Task task)
     {
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        GroupListView.getItems().addAll(groups);
+
 
     }
 }
