@@ -54,7 +54,7 @@ public class TaskController implements INotify, Initializable
     }
 
     public void switchToEinstellungen(ActionEvent event)throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("EinstellungenView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/EinstellungenView.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
