@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Enums.TaskPriority;
 import sample.Models.Task;
 import sample.Models.TaskList;
 import sample.Services.StorageService;
@@ -51,5 +52,8 @@ public class Main extends Application
                 System.out.println(task.getTitle());
             }
         }
+
+        TaskPriority priority = TaskPriority.High;
+        System.out.println(priority);
     }
 }

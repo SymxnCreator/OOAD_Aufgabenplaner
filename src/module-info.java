@@ -1,5 +1,6 @@
 module OOAD.Aufgabenplaner
 {
+    requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
