@@ -3,7 +3,6 @@ package sample.Services;
 import sample.Enums.TaskPriority;
 import sample.Models.Task;
 import sample.Models.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Eine Service-Klasse, die für das permanente Speichern von Benutzer-erstellten Daten zuständig ist.
+ */
 public class StorageService
 {
     /**

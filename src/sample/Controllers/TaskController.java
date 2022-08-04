@@ -20,8 +20,6 @@ import java.util.ResourceBundle;
 
 public class TaskController implements INotify, Initializable
 {
-
-
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -75,14 +73,13 @@ public class TaskController implements INotify, Initializable
 
     }
 
-
-    @FXML
-    private void addTask_OnAction(ActionEvent event)
+    /**
+     * Fügt die übergebene Aufgabe der aktuell-ausgewählten Aufgabenliste hinzu.
+     * Wird von der Klasse "NewTaskController" aufgerufen.
+     * @param task
+     */
+    public void addTask(Task task)
     {
 
     }
-
-
-
-
 }

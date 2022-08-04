@@ -2,6 +2,9 @@ package sample.Models;
 
 import java.util.ArrayList;
 
+/**
+ * Beschreibt den Aufbau einer Aufgabenliste.
+ */
 public class TaskList
 {
     /**
@@ -23,7 +26,7 @@ public class TaskList
     /**
      * Fügt der Liste eine neue Aufgabe hinzu.
      * @param task Die hinzuzufügende Aufgabe.
-     * @return Gibt bei Erfolg true zurück
+     * @return Gibt bei Erfolg true zurück.
      */
     public boolean add(Task task)
     {

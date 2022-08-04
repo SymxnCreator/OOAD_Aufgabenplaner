@@ -8,6 +8,9 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
 import java.util.Date;
 
+/**
+ * Definiert den Aufbau einer Aufgabe.
+ */
 public class Task
 {
     private int id;
