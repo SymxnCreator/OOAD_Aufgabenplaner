@@ -46,7 +46,7 @@ public class TaskController implements INotify, Initializable
     }
 
     public void switchToStatisken(ActionEvent event)throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/StatistikenView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/StatisticsView.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -54,7 +54,7 @@ public class TaskController implements INotify, Initializable
     }
 
     public void switchToEinstellungen(ActionEvent event)throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/EinstellungenView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/SettingsView.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
