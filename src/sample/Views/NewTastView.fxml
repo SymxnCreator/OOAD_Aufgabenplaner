@@ -27,6 +27,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <ChoiceBox prefWidth="150.0" value="Mittel" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -63,7 +64,7 @@
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Erinnerung" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+      <Label text="Erinnerung" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
          <font>
             <Font size="18.0" />
          </font>
@@ -71,7 +72,7 @@
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Notiz" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+      <Label text="Notiz" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
          <font>
             <Font size="18.0" />
          </font>
@@ -80,7 +81,7 @@
          </GridPane.margin>
       </Label>
       <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
-       <ChoiceBox prefWidth="150.0" value="1 Stunde" GridPane.columnIndex="1" GridPane.rowIndex="4">
+       <ChoiceBox prefWidth="150.0" value="1 Stunde" GridPane.columnIndex="1" GridPane.rowIndex="5">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="1 Stunde" />
@@ -90,12 +91,21 @@
                </FXCollections>
            </items>
        </ChoiceBox>
-      <TextArea maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" text="Aufgabe hinzufügen" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+      <TextArea maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button mnemonicParsing="false" text="Aufgabe hinzufügen" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
       <Label prefHeight="17.0" prefWidth="157.0" text="Neue Aufgabe" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
+      <Label text="Zeit" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>
