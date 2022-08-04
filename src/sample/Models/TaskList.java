@@ -23,6 +23,7 @@ public class TaskList
     /**
      * Fügt der Liste eine neue Aufgabe hinzu.
      * @param task Die hinzuzufügende Aufgabe.
+     * @return Gibt bei Erfolg true zurück
      */
     public boolean add(Task task)
     {
@@ -32,9 +33,42 @@ public class TaskList
     /**
      * Löscht eine Aufgabe aus der Liste
      * @param task Die zulöschende Aufgabe.
+     * @return Gibt bei Erfolg true zurück
      */
     public boolean remove(Task task) {
         return this.tasks.remove(task);
+    }
+
+    /**
+     * Berechnet die Summe aller erledigten Aufgaben.
+     * @return Die Summe aller erledigten Aufgaben
+     */
+    public int sumTasksDone() {
+        int counter = 0;
+        for (Task task : tasks) {
+            if (task.isFinished()) counter++;
+        }
+        return counter;
+    }
+
+    /**
+     * Berechnet die Summe aller unerledigten Aufgaben.
+     * @return Die Summe aller unerledigten Aufgaben
+     */
+    public int sumTasksNotDone() {
+        int counter = 0;
+        for (Task task : tasks) {
+            if (!task.isFinished()) counter++;
+        }
+        return counter;
+    }
+
+    public double sumTasksDoneInPercent() {
+        return (sumTasksDone() * 100.0) / tasks.size();
+    }
+
+    public double sumTasksNotDoneInPercent() {
+        return (sumTasksNotDone() * 100.0) / tasks.size();
     }
 
     public String getName() {

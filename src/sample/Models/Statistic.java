@@ -4,34 +4,18 @@ import java.util.ArrayList;
 
 public class Statistic {
 
-    static int getSumAllTasksNotDone(ArrayList<TaskList> taskLists) {
+    static int sumAllTasksNotDone(ArrayList<TaskList> taskLists) {
         int counter = 0;
         for (TaskList tl : taskLists) {
-            counter += getSumTasksNotDone(tl);
+            counter += tl.sumTasksNotDone();
         }
         return counter;
     }
 
-    static int getSumAllTasksDone(ArrayList<TaskList> taskLists) {
+    static int sumAllTasksDone(ArrayList<TaskList> taskLists) {
         int counter = 0;
         for (TaskList tl : taskLists) {
-            counter += getSumTasksDone(tl);
-        }
-        return counter;
-    }
-
-    static int getSumTasksNotDone(TaskList taskList) {
-        int counter = 0;
-        for (Task task : taskList.getTasks()) {
-            if (!task.isFinished()) counter++;
-        }
-        return counter;
-    }
-
-    static int getSumTasksDone(TaskList taskList) { //in TaskLists rein????
-        int counter = 0;
-        for (Task task : taskList.getTasks()) {
-            if (task.isFinished()) counter++;
+            counter += tl.sumTasksDone();
         }
         return counter;
     }
@@ -40,11 +24,11 @@ public class Statistic {
         if (taskLists.size() == 0) return null;
 
         TaskList tl1 = taskLists.get(0);
-        double tl1TasksDoneInPercent = getSumTasksDoneInPercent(tl1);
+        double tl1TasksDoneInPercent = tl1.sumTasksDoneInPercent();
 
         for (int i = 1; i < taskLists.size(); i++) {
             TaskList tl2 = taskLists.get(i);
-            double tl2TasksDoneInPercent = getSumTasksDoneInPercent(tl2);
+            double tl2TasksDoneInPercent = tl2.sumTasksDoneInPercent();
 
             if (tl1TasksDoneInPercent < tl2TasksDoneInPercent) {
                 tl1 = tl2;
@@ -53,9 +37,5 @@ public class Statistic {
         }
 
         return tl1;
-    }
-
-    static double getSumTasksDoneInPercent(TaskList taskList) {
-        return (getSumTasksDone(taskList) * 100.0) / taskList.getTasks().size();
     }
 }
