@@ -1,5 +1,6 @@
 package sample.Services;
 
+import sample.Enums.TaskPriority;
 import sample.Models.Task;
 import sample.Models.TaskList;
 
@@ -55,7 +56,10 @@ public class StorageService
         }
 
         FileWriter writer = new FileWriter(file, true);
-        writer.append(task.getTitle() + ";" + task.getEndDate() + ";" + task.isFinished() + "\n");
+
+        writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationDate()
+                + ";" + task.getNote() + ";" + task.isFinished() + "\n");
+
         writer.close();
 
         return true;
@@ -88,11 +92,23 @@ public class StorageService
             while (reader.hasNextLine())
             {
                 String[] data = reader.nextLine().split(";");
-                String title = data[0];
-                LocalDate endDate = LocalDate.parse(data[1]);
-                boolean isFinished = Boolean.parseBoolean(data[2]);
 
-                list.add(new Task(title, endDate, isFinished));
+                String title = data[0];
+                TaskPriority priority = TaskPriority.valueOf(data[1]);
+
+                LocalDate endDate = null;
+                if (!data[2].equals("null")) endDate = LocalDate.parse(data[2]);
+
+                LocalDate notificationDate = null;
+                if (!data[3].equals("null")) notificationDate = LocalDate.parse(data[3]);
+
+                String note = null;
+                if (!data[4].equals("null")) note = data[4];
+
+                boolean isFinished = Boolean.parseBoolean(data[5]);
+
+
+                list.add(new Task(title, priority, endDate, notificationDate, note, isFinished));
             }
 
             taskLists.add(list);
@@ -120,7 +136,8 @@ public class StorageService
 
         for (Task task : list.getTasks())
         {
-            writer.append(task.getTitle() + ";" + task.getEndDate() + ";" + task.isFinished() + "\n");
+            addTask(list.getName(), task);
+            //writer.append(task.getTitle() + ";" + task.getEndDate() + ";" + task.isFinished() + "\n");
         }
 
         writer.close();
