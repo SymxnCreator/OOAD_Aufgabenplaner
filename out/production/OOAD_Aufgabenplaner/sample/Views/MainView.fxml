@@ -47,11 +47,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -71,7 +71,7 @@
           <RowConstraints maxHeight="605.6666679382324" minHeight="10.0" prefHeight="553.999989827474" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ChoiceBox fx:id="filter_ChoiceBox" onAction="#filterTasks_OnAction" prefWidth="150.0" value="Nach Datum" GridPane.halignment="RIGHT">
+            <ChoiceBox fx:id="filter_ChoiceBox" onAction="#filterTasks_OnAction" prefWidth="150.0" styleClass="Selected" value="Nach Datum" GridPane.halignment="RIGHT">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Nach Datum" />
@@ -88,7 +88,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <ListView fx:id="Tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="906.0" style="-fx-border-style: solid;" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <ListView id="TaskListView" fx:id="Tasks_ListView"  styleClass="noFocus" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="497.0" prefWidth="906.0" GridPane.rowIndex="1" GridPane.valignment="TOP">
 
             </ListView>
          </children>
@@ -96,7 +96,7 @@
             <Insets left="40.0" right="40.0" />
          </padding>
       </GridPane>
-       <ListView fx:id="TaskGroups_ListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="602.0" prefWidth="215.0" GridPane.valignment="BOTTOM" />
+       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView" styleClass="noFocus" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="602.0" prefWidth="215.0" GridPane.valignment="BOTTOM" />
    </children>
     <stylesheets>
         <URL value="@Styles/Styles.css" />

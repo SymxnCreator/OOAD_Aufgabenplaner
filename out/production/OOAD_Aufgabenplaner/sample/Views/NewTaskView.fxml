@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <GridPane fx:controller="sample.Presenters.NewTaskPresenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -108,4 +109,7 @@
       </Label>
       <TextField fx:id="endTime_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
+    <stylesheets>
+        <URL value="@Styles/Styles.css" />
+    </stylesheets>
 </GridPane>
