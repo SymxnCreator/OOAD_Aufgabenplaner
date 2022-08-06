@@ -1,3 +1,17 @@
+*{
+    -fx-brightest:#9BF7FA;
+    -fx-bright: #48DBE0;
+    -fx-medium: #38AAAD;
+    -fx-dark: #1F5F61;
+    -fx-darkest: #3D6061;
+
+    -fx-grey1: #999999;
+    -fx-grey2: #4D4D4D;
+    -fx-grey3: #1A1A1A;
+    -fx-grey4: #000000;
+}
+
+
 
 #AddListBtn{
     -fx-background-image: url("../Resources/hinzufugen.png");
@@ -5,9 +19,24 @@
     -fx-background-size: 20 20;
     -fx-background-position: center center;
     -fx-border: none;
-    -fx-background-color: white;
-    -fx-max-width: 100%;
+    -fx-background-color: -fx-medium;
 
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+}
 
+#AddListBtn:hover{
+    -fx-background-color: -fx-dark;
+}
 
+#AddTaskBtn{
+    -fx-background-color: -fx-medium;
+}
+
+#AddTaskBtn:hover{
+    -fx-background-color: -fx-dark;
+}
+
+.MenuBtn{
+    -fx-background-color: -fx-grey1;
 }

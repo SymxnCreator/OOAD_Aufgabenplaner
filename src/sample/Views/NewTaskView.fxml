@@ -30,7 +30,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ChoiceBox fx:id="priority_ChoiceBox" prefWidth="150.0" value="Mittel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ChoiceBox fx:id="priority_ChoiceBox" value="Mittel" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Niedrig" />
@@ -81,9 +81,10 @@
          </GridPane.margin>
       </Label>
       <DatePicker fx:id="endDate_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-       <ChoiceBox fx:id="notificationTime_ChoiceBox" prefWidth="150.0" value="1 Stunde" GridPane.columnIndex="1" GridPane.rowIndex="5">
+       <ChoiceBox fx:id="notificationTime_ChoiceBox" value="Keine" prefWidth="150.0"  GridPane.columnIndex="1" GridPane.rowIndex="5">
            <items>
                <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Keine" />
                    <String fx:value="1 Stunde vorher" />
                    <String fx:value="1 Tag vorher" />
                    <String fx:value="1 Woche vorher" />
