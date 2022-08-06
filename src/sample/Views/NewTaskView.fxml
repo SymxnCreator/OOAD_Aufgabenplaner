@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="sample.Presenters.NewTaskPresenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,7 +30,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ChoiceBox prefWidth="150.0" value="Mittel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ChoiceBox fx:id="priority_ChoiceBox" prefWidth="150.0" value="Mittel" GridPane.columnIndex="1" GridPane.rowIndex="2">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Niedrig" />
@@ -47,7 +47,7 @@
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="title_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label text="Wichtigkeit" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
@@ -80,19 +80,18 @@
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
-       <ChoiceBox prefWidth="150.0" value="1 Stunde" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <DatePicker fx:id="endDate_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+       <ChoiceBox fx:id="notificationTime_ChoiceBox" prefWidth="150.0" value="1 Stunde" GridPane.columnIndex="1" GridPane.rowIndex="5">
            <items>
                <FXCollections fx:factory="observableArrayList">
-                   <String fx:value="1 Stunde" />
-                   <String fx:value="6 Stunden" />
-                   <String fx:value="1 Tag" />
-                   <String fx:value="1 Woche" />
+                   <String fx:value="1 Stunde vorher" />
+                   <String fx:value="1 Tag vorher" />
+                   <String fx:value="1 Woche vorher" />
                </FXCollections>
            </items>
        </ChoiceBox>
-      <TextArea maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Button mnemonicParsing="false" text="Aufgabe hinzufügen" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <TextArea fx:id="note_TextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button onAction="#addTask_OnAction" mnemonicParsing="false" text="Aufgabe hinzufügen" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
       <Label prefHeight="17.0" prefWidth="157.0" text="Neue Aufgabe" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
          <font>
             <Font name="System Bold" size="23.0" />
@@ -106,6 +105,6 @@
             <Insets right="50.0" />
          </GridPane.margin>
       </Label>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="endTime_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>

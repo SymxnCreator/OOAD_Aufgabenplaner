@@ -8,10 +8,11 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
 import java.util.Date;
 
+/**
+ * Definiert den Aufbau einer Aufgabe.
+ */
 public class Task
 {
-    private int id;
-
     /**
      * Gibt den Titel der Aufgabe an.
      */
@@ -35,7 +36,7 @@ public class Task
     private LocalDate notificationDate;
 
     /**
-     * Gibt die Notiz der Aufgabe an.
+     * Gibt die Notiz/Beschreibung der Aufgabe an.
      * (Optional)
      */
     private String note;
@@ -45,21 +46,21 @@ public class Task
      */
     private boolean isFinished;
 
-
     /**
-     * Konstruktor zur Erstellung einer neuen Aufgabe
+     * Konstruktor zur Erstellung einer neuen Aufgabe.
      * @param title Der Name der Aufgabe.
      * @param priority Die Wichtigkeit der Aufgabe.
      */
-    public Task(String title, TaskPriority priority)
+    public Task(String title, TaskPriority priority, String note)
     {
         this.title = title;
         this.priority = priority;
+        this.note = note;
         this.isFinished = false;
     }
 
     /**
-     * Konstruktor zur Wiederherstellung der Aufgaben
+     * Konstruktor zum Laden der Aufgaben.
      * @param title Der Name der Aufgabe.
      * @param priority Die Wichtigkeit der Aufgabe.
      * @param endDate Das Datum, wann die Aufgabe fällig ist.
@@ -83,14 +84,6 @@ public class Task
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDate getEndDate() {

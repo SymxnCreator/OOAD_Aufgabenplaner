@@ -5,15 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.Enums.NotificationTime;
-import sample.Enums.TaskPriority;
-import sample.Models.Task;
-import sample.Models.TaskList;
-import sample.Services.StorageService;
-
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
 public class Main extends Application
 {
@@ -26,35 +18,8 @@ public class Main extends Application
         primaryStage.show();
     }
 
-
     public static void main(String[] args) throws IOException
     {
         launch(args);
-
-        System.out.println("Hallo");
-
-        TaskList taskList = new TaskList("Meine Aufgaben");
-        Task task1 = new Task("Sauber machen", TaskPriority.High);
-        Task task2 = new Task("Wäsche waschen", TaskPriority.Low);
-        task2.setNote("Hwello");
-        task2.setEndDate(LocalDate.of(2022, 8, 3));
-        task2.setNotificationDate(NotificationTime.Day);
-        taskList.add(task1);
-        taskList.add(task2);
-
-        StorageService.saveTaskList(taskList);
-        StorageService.addTask("Meine Aufgaben", task1);
-
-        List<TaskList> lists = StorageService.getTaskLists();
-
-        for (TaskList list : lists)
-        {
-            System.out.println(list.getName());
-
-            for (Task task : list.getTasks())
-            {
-                System.out.println(task.getTitle());
-            }
-        }
     }
 }

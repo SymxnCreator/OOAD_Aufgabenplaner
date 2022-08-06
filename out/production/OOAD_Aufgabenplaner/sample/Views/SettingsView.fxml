@@ -14,7 +14,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.EinstellungenController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.SettingsPresenter">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.6666259765625" minWidth="10.0" prefWidth="217.33333333333331" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.6666259765625" minWidth="0.0" prefWidth="0.0" />
@@ -34,7 +34,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToMainView" text="Zurück" GridPane.rowIndex="1" />
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToMainView_OnAction" text="Zurück" GridPane.rowIndex="1" />
             </children>
         </GridPane>
         <Separator halignment="LEFT" orientation="VERTICAL" prefHeight="799.0" prefWidth="167.0" valignment="BOTTOM" GridPane.columnIndex="1" GridPane.rowSpan="2" />
@@ -62,8 +62,8 @@
                            </FXCollections>
                        </items>
                    </ChoiceBox>
-                  <TextArea layoutX="20.0" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
-                  <Button layoutX="25.0" layoutY="392.0" mnemonicParsing="false" text="Absenden" />
+                  <TextArea fx:id="textToSend" layoutX="20.0" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
+                  <Button layoutX="25.0" layoutY="392.0" mnemonicParsing="false" text="Absenden" onAction="#send_OnAction" />
                </children>
             </AnchorPane>
                 <Label prefHeight="45.0" prefWidth="319.0" text="Einstellungen">

@@ -2,6 +2,9 @@ package sample.Models;
 
 import java.util.ArrayList;
 
+/**
+ * Beschreibt den Aufbau einer Aufgabenliste.
+ */
 public class TaskList
 {
     /**
@@ -23,31 +26,36 @@ public class TaskList
     /**
      * Fügt der Liste eine neue Aufgabe hinzu.
      * @param task Die hinzuzufügende Aufgabe.
-     * @return Gibt bei Erfolg true zurück
      */
-    public boolean add(Task task)
+    public void add(Task task)
     {
-        return this.tasks.add(task);
+        this.tasks.add(task);
     }
 
     /**
-     * Löscht eine Aufgabe aus der Liste
+     * Löscht eine Aufgabe aus der Liste.
      * @param task Die zulöschende Aufgabe.
-     * @return Gibt bei Erfolg true zurück
      */
-    public boolean remove(Task task) {
-        return this.tasks.remove(task);
+    public void remove(Task task)
+    {
+        this.tasks.remove(task);
     }
 
     /**
      * Berechnet die Summe aller erledigten Aufgaben.
-     * @return Die Summe aller erledigten Aufgaben
+     * @return Die Summe aller erledigten Aufgaben.
      */
-    public int sumTasksDone() {
+    public int sumTasksDone()
+    {
         int counter = 0;
-        for (Task task : tasks) {
-            if (task.isFinished()) counter++;
+        for (Task task : this.tasks)
+        {
+            if (task.isFinished())
+            {
+                counter++;
+            }
         }
+
         return counter;
     }
 
@@ -55,11 +63,14 @@ public class TaskList
      * Berechnet die Summe aller unerledigten Aufgaben.
      * @return Die Summe aller unerledigten Aufgaben
      */
-    public int sumTasksNotDone() {
+    public int sumTasksNotDone()
+    {
         int counter = 0;
-        for (Task task : tasks) {
+        for (Task task : this.tasks)
+        {
             if (!task.isFinished()) counter++;
         }
+
         return counter;
     }
 
