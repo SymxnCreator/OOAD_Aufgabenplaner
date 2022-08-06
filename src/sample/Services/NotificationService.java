@@ -1,21 +1,41 @@
 package sample.Services;
 
 import sample.Interfaces.INotify;
+import sample.Models.Task;
 import sample.Models.TaskList;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class NotificationService
 {
-    private INotify consumer;
-
-    public void setEventConsumer(INotify consumer)
+    public static void run(INotify consumer, List<TaskList> lists)
     {
-        this.consumer = consumer;
-    }
+        if (consumer == null)
+        {
+            return;
+        }
 
-    public void run(List<TaskList> lists)
-    {
+        new Thread(() ->
+        {
+            for (TaskList taskList : lists)
+            {
+                System.out.println(taskList);
+                for (Task task : taskList.getTasks())
+                {
+                    System.out.println(task);
+                }
+            }
 
+            try
+            {
+                System.out.println("aaa");
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        });
     }
 }
