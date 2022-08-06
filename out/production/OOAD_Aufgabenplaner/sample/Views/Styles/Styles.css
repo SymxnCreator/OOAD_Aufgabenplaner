@@ -1,0 +1,13 @@
+
+#AddListBtn{
+    -fx-background-image: url("../Resources/hinzufugen.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20 20;
+    -fx-background-position: center center;
+    -fx-border: none;
+    -fx-background-color: white;
+    -fx-max-width: 100%;
+
+
+
+}

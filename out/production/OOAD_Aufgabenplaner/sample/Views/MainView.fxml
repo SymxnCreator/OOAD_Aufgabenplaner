@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -26,9 +27,9 @@
     <RowConstraints maxHeight="398.3333638509115" minHeight="10.0" prefHeight="137.33335367838538" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" text="Plus" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Button id="AddListBtn" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets right="15.0" top="15.0" />
+            <Insets right="20.0" top="20.0" />
          </GridPane.margin>
       </Button>
       <Label text="Meine Listen" GridPane.halignment="LEFT" GridPane.valignment="TOP">
@@ -103,4 +104,7 @@
       </GridPane>
       <ListView fx:id="GroupListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="215.0" GridPane.valignment="BOTTOM" />
    </children>
+    <stylesheets>
+        <URL value="@Styles/Styles.css" />
+    </stylesheets>
 </GridPane>
