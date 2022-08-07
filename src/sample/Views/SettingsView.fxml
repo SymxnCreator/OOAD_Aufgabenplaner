@@ -53,12 +53,12 @@
             <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="20.0" layoutY="45.0" text="Entwickler kontaktieren">
+                  <Label layoutY="46.0" text="Entwickler kontaktieren">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                   <ChoiceBox layoutX="20.0" layoutY="107.0" prefWidth="150.0" value="Fehler melden">
+                   <ChoiceBox layoutY="108.0" prefWidth="150.0" value="Fehler melden">
                        <items>
                            <FXCollections fx:factory="observableArrayList">
                                <String fx:value="Fehler melden" />
@@ -66,12 +66,12 @@
                            </FXCollections>
                        </items>
                    </ChoiceBox>
-                  <TextArea fx:id="textToSend" layoutX="20.0" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
-                  <Button layoutX="25.0" layoutY="392.0" mnemonicParsing="false" onAction="#send_OnAction" styleClass="BlueBtn" text="Absenden" textFill="WHITE">
+                  <TextArea fx:id="textToSend" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
+                  <Button layoutY="392.0" mnemonicParsing="false" onAction="#send_OnAction" styleClass="BlueBtn" text="Absenden" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Label id="MsgSendLabel" fx:id="MsgSend_Label" visible="false" layoutX="112.0" layoutY="395.0" text="Nachricht abgesendet!">
+                  <Label id="MsgSendLabel" fx:id="MsgSend_Label" layoutX="112.0" layoutY="395.0" text="Nachricht abgesendet!" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>

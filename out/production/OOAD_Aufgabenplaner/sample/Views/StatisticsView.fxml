@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -47,6 +48,52 @@
             <RowConstraints maxHeight="605.6666679382324" minHeight="10.0" prefHeight="553.999989827474" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Pane layoutX="142.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="275.0" styleClass="Statisticblock">
+                     <children>
+                        <Label fx:id="NumberOfTasksDone_Label" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="46.0" prefHeight="66.0" prefWidth="269.0" text="0" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="CENTER" layoutX="82.0" layoutY="119.0" text="Aufgaben erledigt" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="487.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="275.0" styleClass="Statisticblock">
+                     <children>
+                        <Label id="NumberTastDone" fx:id="NumberOfTasksNotDone_Label" alignment="CENTER" layoutX="-1.0" layoutY="45.0" prefHeight="66.0" prefWidth="275.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="CENTER" layoutX="65.0" layoutY="119.0" text="Aufgaben nicht erledigt" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="293.0" layoutY="334.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="319.0" styleClass="Statisticblock">
+                     <children>
+                        <Label fx:id="MostSuccessfulList_Label" alignment="CENTER" layoutX="1.0" layoutY="49.0" prefHeight="66.0" prefWidth="319.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="CENTER" layoutX="109.0" layoutY="122.0" text="Erfolgreiste Liste" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
             <Label prefHeight="45.0" prefWidth="319.0" text="Statistiken">
                <font>
                   <Font name="System Bold" size="30.0" />
@@ -55,45 +102,6 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="275.0" styleClass="Statisticblock" GridPane.rowIndex="1">
-               <children>
-                  <Label fx:id="NumberOfTasksDone_Label" layoutX="124.0" layoutY="46.0" text="0">
-                     <font>
-                        <Font name="System Bold" size="45.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="CENTER" layoutX="82.0" layoutY="119.0" text="Aufgaben erledigt" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="275.0" styleClass="Statisticblock" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <children>
-                  <Label id="NumberTastDone" fx:id="NumberOfTasksNotDone_Label" layoutX="125.0" layoutY="45.0" text="0">
-                     <font>
-                        <Font name="System Bold" size="45.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="CENTER" layoutX="65.0" layoutY="119.0" text="Aufgaben nicht erledigt" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="275.0" styleClass="Statisticblock" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <children>
-                  <Label fx:id="MostSuccessfulList_Label" layoutX="125.0" layoutY="45.0" text="0">
-                     <font>
-                        <Font name="System Bold" size="45.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="CENTER" layoutX="87.0" layoutY="118.0" text="Erfolgreiste Liste" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
          </children>
          <padding>
             <Insets left="40.0" right="40.0" />
