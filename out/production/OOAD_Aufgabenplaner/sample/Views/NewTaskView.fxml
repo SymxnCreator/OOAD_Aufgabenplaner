@@ -52,7 +52,7 @@
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <DatePicker fx:id="endDate_DatePicker" promptText="Datum hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <!--<DatePicker fx:id="endDate_DatePicker" promptText="Datum hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
        <ChoiceBox fx:id="notificationTime_ChoiceBox" prefHeight="25.0" prefWidth="181.0" value="Keine Erinnerung" GridPane.columnIndex="1" GridPane.rowIndex="5">
            <items>
                <FXCollections fx:factory="observableArrayList">

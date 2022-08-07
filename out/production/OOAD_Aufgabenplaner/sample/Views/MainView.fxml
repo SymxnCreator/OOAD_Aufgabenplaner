@@ -107,10 +107,6 @@
          </GridPane.margin>
       </Separator>
       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView1" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="190.0" prefWidth="215.0" styleClass="noFocus" GridPane.valignment="BOTTOM" />
-       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="349.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets top="80.0" />
-         </GridPane.margin></ListView>
       <Label text="Erinnerung">
          <font>
             <Font size="20.0" />

@@ -338,7 +338,7 @@ public class MainViewPresenter implements Notificatable, Initializable
     @FXML
     public void GroupListView_OnKeyReleased(KeyEvent event)
     {
-        if (event.getCode() != KeyCode.DELETE)
+        if (event.getCode() != KeyCode.DELETE || taskLists_ListView.getItems().size() == 1)
         {
             return;
         }
@@ -351,12 +351,6 @@ public class MainViewPresenter implements Notificatable, Initializable
         if (deleted)
         {
             taskLists_ListView.getItems().remove(selectedList);
-
-            // Wenn die letzte Liste gelöscht wurde, Standardliste hinzufügen
-            if (taskLists_ListView.getItems().size() == 0)
-            {
-                addDefaultList();
-            }
 
             // Erste Liste selektieren
             selectTaskList(taskLists_ListView.getItems().get(0));
