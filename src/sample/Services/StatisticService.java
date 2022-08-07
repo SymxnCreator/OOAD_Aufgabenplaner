@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Eine Klasse, die für das Berechnen von Statistiken zuständig ist.
+ * @author Megan Diekmann
  */
 public class StatisticService
 {
@@ -13,13 +14,12 @@ public class StatisticService
      * Berechnet, wie viele Aufgaben der Benutzer noch nicht erledigt hat.
      * @param taskLists Die Aufgabenlisten.
      * @return Gibt die Anzahl zurück.
+     * @author Megan Diekmann
      */
-    public static int sumAllTasksNotDone(ArrayList<TaskList> taskLists)
-    {
+    public static int sumAllTasksNotDone(ArrayList<TaskList> taskLists) {
         int counter = 0;
 
-        for (TaskList taskList : taskLists)
-        {
+        for (TaskList taskList : taskLists) {
             counter += taskList.sumTasksNotDone();
         }
 
@@ -30,20 +30,25 @@ public class StatisticService
      * Berechnet, wie viele Aufgaben der Benutzer bereits erledigt hat.
      * @param taskLists Die Aufgabenlisten.
      * @return Gibt die Anzahl zurück.
+     * @author Megan Diekmann
      */
-    public static int sumAllTasksDone(ArrayList<TaskList> taskLists)
-    {
+    public static int sumAllTasksDone(ArrayList<TaskList> taskLists) {
         int counter = 0;
 
-        for (TaskList taskList : taskLists)
-        {
+        for (TaskList taskList : taskLists) {
             counter += taskList.sumTasksDone();
         }
 
         return counter;
     }
 
-    static TaskList getMostSuccessfulList(ArrayList<TaskList> taskLists)
+    /**
+     * Ermittelt die Aufgabeliste mit den meisten erledigten Aufgaben.
+     * @param taskLists Die Aufgabenlisten.
+     * @return Gibt die Liste zurück
+     * @author Megan Diekmann
+     */
+    public static TaskList getMostSuccessfulList(ArrayList<TaskList> taskLists)
     {
         if (taskLists.size() == 0) return null;
 

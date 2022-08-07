@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.Interfaces.Notificatable;
+import sample.Interfaces.TaskNotificatable;
 import sample.Main;
 import sample.Models.Task;
 import sample.Models.TaskList;
@@ -26,17 +26,15 @@ import sample.Services.StorageService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * Steuerklasse der MainView.fxml
  */
-public class MainViewPresenter implements Notificatable, Initializable
+public class MainViewPresenter implements TaskNotificatable, Initializable
 {
     /**
      * Name der Standard-Aufgabenliste, die erstellt wird, falls keine Listen vorhanden sind.
@@ -59,7 +57,7 @@ public class MainViewPresenter implements Notificatable, Initializable
     ListView<Task> tasks_ListView;
 
     @FXML
-    ListView<String> notifications_ListView;
+    ListView<Task> notifications_ListView;
 
     @FXML
     Label taskListTitle_Label;
@@ -70,13 +68,31 @@ public class MainViewPresenter implements Notificatable, Initializable
     @Override
     public void notifiy(Task task)
     {
-        this.notifications_ListView.getItems().add(task.getTitle());
+        this.notifications_ListView.getItems().add(task);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         PresenterLocator.taskPresenter = this;
+
+        notifications_ListView.setCellFactory(o -> new ListCell<Task>()
+        {
+            @Override
+            protected void updateItem(Task item, boolean empty)
+            {
+                super.updateItem(item, empty);
+
+                if (item == null)
+                {
+                    setText("");
+                }
+                else
+                {
+                    setText(item.getTitle());
+                }
+            }
+        });
 
         taskLists_ListView.setCellFactory(o -> new ListCell<TaskList>()
         {
@@ -161,6 +177,7 @@ public class MainViewPresenter implements Notificatable, Initializable
                     tasks_ListView.getItems().remove(task);
                     TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
                     selectedList.remove(task);
+                    notifications_ListView.getItems().remove(task);
 
                     try
                     {
@@ -176,6 +193,11 @@ public class MainViewPresenter implements Notificatable, Initializable
                 {
                     Task task = getItem();
                     task.setFinished(checkBox.isSelected());
+
+                    if (task.isFinished())
+                    {
+                        notifications_ListView.getItems().remove(task);
+                    }
 
                     try
                     {
@@ -195,7 +217,7 @@ public class MainViewPresenter implements Notificatable, Initializable
 
                 if (item == null)
                 {
-                    setGraphic(null);
+                    //setGraphic(null);
                     setText("");
                 }
                 else
@@ -309,6 +331,14 @@ public class MainViewPresenter implements Notificatable, Initializable
     {
         if (filter_ChoiceBox.getValue().toString().contentEquals("Nach Datum"))
         {
+            for (Task task : tasks_ListView.getItems())
+            {
+                if (task.getEndDate() == null)
+                {
+                    task.setEndDate(LocalDateTime.MIN);
+                }
+            }
+
             Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getEndDate().compareTo(y.getEndDate()));
             Collections.reverse(tasks_ListView.getItems());
         }
