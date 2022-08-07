@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:controller="sample.Presenters.NewTaskPresenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.NewTaskPresenter">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.6666259765625" minWidth="10.0" prefWidth="228.6666259765625" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.33329264322913" minWidth="10.0" prefWidth="230.00004069010413" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ChoiceBox fx:id="priority_ChoiceBox" prefWidth="150.0" value="Mittel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ChoiceBox fx:id="priority_ChoiceBox" prefHeight="25.0" prefWidth="179.0" value="Mittel" GridPane.columnIndex="1" GridPane.rowIndex="2">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Niedrig" />
@@ -39,72 +43,75 @@
               </FXCollections>
           </items>
       </ChoiceBox>
-      <Label text="Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="30.0" right="50.0" />
-         </GridPane.margin>
-      </Label>
-      <TextField fx:id="title_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="title_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="361.0" promptText="Geben Sie Ihrer Aufgabe einen Titel..." GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Label text="Wichtigkeit" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <font>
-            <Font size="18.0" />
+            <Font size="15.0" />
          </font>
          <GridPane.margin>
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Datum" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="30.0" right="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Erinnerung" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="30.0" right="50.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Notiz" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="30.0" right="50.0" />
-         </GridPane.margin>
-      </Label>
-      <DatePicker fx:id="endDate_DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-       <ChoiceBox fx:id="notificationTime_ChoiceBox" prefWidth="150.0" value="1 Stunde" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <DatePicker fx:id="endDate_DatePicker" promptText="Datum hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+       <ChoiceBox fx:id="notificationTime_ChoiceBox" prefHeight="25.0" prefWidth="181.0" value="Erinnerung" GridPane.columnIndex="1" GridPane.rowIndex="5">
            <items>
                <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Erinnerung" />
+                   <String fx:value="Keine" />
                    <String fx:value="1 Stunde vorher" />
                    <String fx:value="1 Tag vorher" />
                    <String fx:value="1 Woche vorher" />
                </FXCollections>
            </items>
        </ChoiceBox>
-      <TextArea fx:id="note_TextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Button onAction="#addTask_OnAction" mnemonicParsing="false" text="Aufgabe hinzufügen" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <TextArea fx:id="note_TextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" promptText="Notiz hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button styleClass="BlueBtn" mnemonicParsing="false" onAction="#addTask_OnAction" prefHeight="31.0" prefWidth="357.0" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
       <Label prefHeight="17.0" prefWidth="157.0" text="Neue Aufgabe" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label text="Zeit" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-         <font>
-            <Font size="18.0" />
-         </font>
+      <TextField fx:id="endTime_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.valignment="TOP" />
+      <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+      <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+         <image>
+            <Image url="@Resources/calendar1.png" />
+         </image>
          <GridPane.margin>
             <Insets right="50.0" />
          </GridPane.margin>
-      </Label>
-      <TextField fx:id="endTime_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+         <image>
+            <Image url="@Resources/clock.png" />
+         </image>
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+         <image>
+            <Image url="@Resources/notification.png" />
+         </image>
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+         <image>
+            <Image url="@Resources/sticky-note.png" />
+         </image>
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
+    <stylesheets>
+        <URL value="@Styles/Styles.css" />
+    </stylesheets>
 </GridPane>

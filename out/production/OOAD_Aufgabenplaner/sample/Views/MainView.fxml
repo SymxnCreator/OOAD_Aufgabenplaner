@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.MainViewPresenter">
+<GridPane fx:id="rootPane" maxHeight="800.0" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.MainViewPresenter">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.6666259765625" minWidth="10.0" prefWidth="217.33333333333331" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.6666259765625" minWidth="0.0" prefWidth="0.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1056.0" minWidth="10.0" prefWidth="988.0000000000001" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.6666259765625" minWidth="10.0" prefWidth="214.9999796549479" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1056.0" minWidth="10.0" prefWidth="984.3333536783854" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="761.0000203450521" minHeight="10.0" prefHeight="663.3333129882812" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="398.3333638509115" minHeight="10.0" prefHeight="137.33335367838538" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" text="Plus" GridPane.halignment="RIGHT" GridPane.valignment="TOP" onAction="#createTaskList_OnAction">
+      <Button id="AddListBtn" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTaskList_OnAction" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets right="15.0" top="15.0" />
+            <Insets right="20.0" top="20.0" />
          </GridPane.margin>
       </Button>
       <Label text="Meine Listen" GridPane.halignment="LEFT" GridPane.valignment="TOP">
@@ -48,13 +46,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" text="Einstellungen" GridPane.rowIndex="1" />
-            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" text="Statistiken" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </GridPane>
-      <Separator halignment="LEFT" orientation="VERTICAL" prefHeight="799.0" prefWidth="167.0" valignment="BOTTOM" GridPane.columnIndex="1" GridPane.rowSpan="2" />
-      <Button mnemonicParsing="false" onAction="#openNewTaskWindow" prefHeight="53.0" prefWidth="567.0" text="Aufgabe hinzufügen" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <GridPane GridPane.columnIndex="2">
+      <Button id="AddTaskBtn" mnemonicParsing="false" onAction="#openNewTaskWindow" prefHeight="53.0" prefWidth="567.0" styleClass="BlueBtn" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <GridPane GridPane.columnIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -63,7 +69,7 @@
           <RowConstraints maxHeight="605.6666679382324" minHeight="10.0" prefHeight="553.999989827474" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ChoiceBox fx:id="filter_ChoiceBox" onAction="#filterTasks_OnAction" prefWidth="150.0" value="Filter" GridPane.halignment="RIGHT">
+            <ChoiceBox fx:id="filter_ChoiceBox" onAction="#filterTasks_OnAction" prefWidth="150.0" styleClass="Focused" value="Nach Datum" GridPane.halignment="RIGHT">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Nach Datum" />
@@ -72,7 +78,7 @@
                 </items>
             </ChoiceBox>
 
-            <Label prefHeight="45.0" prefWidth="319.0" fx:id="taskListTitle">
+            <Label fx:id="taskListTitle" prefHeight="45.0" prefWidth="319.0">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -80,7 +86,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <ListView fx:id="Tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="906.0" style="-fx-border-style: solid;" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <ListView id="TaskListView" fx:id="Tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="497.0" prefWidth="906.0" styleClass="noFocus" GridPane.rowIndex="1" GridPane.valignment="TOP">
 
             </ListView>
          </children>
@@ -88,6 +94,14 @@
             <Insets left="40.0" right="40.0" />
          </padding>
       </GridPane>
-       <ListView fx:id="TaskGroups_ListView" onMouseClicked="#GroupListView_Clicked" onKeyReleased="#GroupListView_OnKeyReleased" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="215.0" GridPane.valignment="BOTTOM" />
+       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="596.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+      <Separator orientation="VERTICAL" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="-5.0" />
+         </GridPane.margin>
+      </Separator>
    </children>
+    <stylesheets>
+        <URL value="@Styles/Styles.css" />
+    </stylesheets>
 </GridPane>
