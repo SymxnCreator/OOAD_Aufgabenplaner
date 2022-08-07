@@ -64,11 +64,11 @@
            </items>
        </ChoiceBox>
       <TextArea fx:id="note_TextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" promptText="Notiz hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Button styleClass="BlueBtn" fx:id="AddOrUpdateTask_Button"  mnemonicParsing="false" onAction="#addTask_OnAction" prefHeight="31.0" prefWidth="357.0" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+      <Button fx:id="AddOrUpdateTask_Button" mnemonicParsing="false" onAction="#addTask_OnAction" prefHeight="31.0" prefWidth="357.0" styleClass="BlueBtn" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Label fx:id="title_Label" prefHeight="17.0" prefWidth="157.0" text="Neue Aufgabe" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
+      <Label fx:id="title_Label" alignment="CENTER" prefHeight="34.0" prefWidth="466.0" text="Neue Aufgabe" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
