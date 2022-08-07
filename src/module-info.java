@@ -6,5 +6,5 @@ module OOAD.Aufgabenplaner
     requires javafx.fxml;
 
     opens sample;
-    opens sample.Controllers;
+    opens sample.Presenters;
 }

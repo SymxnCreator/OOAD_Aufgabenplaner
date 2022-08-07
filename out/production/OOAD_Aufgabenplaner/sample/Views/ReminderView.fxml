@@ -6,16 +6,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="178.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ReminderController">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane prefHeight="178.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.ReminderPresenter">
    <children>
-      <Label layoutX="207.0" layoutY="32.0" text="Name">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="34.0" prefHeight="47.0" prefWidth="491.0" text="Name Aufgabe">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
-      <Button layoutX="58.0" layoutY="119.0" mnemonicParsing="false" text="Löschen" />
-      <ChoiceBox layoutX="274.0" layoutY="119.0" prefWidth="150.0" />
+      <Button layoutX="28.0" layoutY="119.0" mnemonicParsing="false" text="Löschen" />
+      <ChoiceBox layoutX="274.0" layoutY="119.0" prefWidth="150.0" value="1 Stunde">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="1 Stunde" />
+                  <String fx:value="6 Stunden" />
+                  <String fx:value="1 Tag" />
+                  <String fx:value="1 Woche" />
+               </FXCollections>
+            </items>
+      </ChoiceBox>
       <Label layoutX="169.0" layoutY="123.0" text="Erneut erinnern in" />
       <Button layoutX="437.0" layoutY="119.0" mnemonicParsing="false" text="Ok" />
    </children>

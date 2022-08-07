@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -20,11 +19,11 @@ public class StorageService
     /**
      * Der Wurzelordner auf dem Computer, in dem die Aufgabenlisten gespeichert werden.
      */
-    private static final String TASK_LIST_PATH = "TaskLists/";
+    private static final String TASK_LISTS_PATH = "TaskLists/";
 
     static
     {
-        File rootFolder = new File(TASK_LIST_PATH);
+        File rootFolder = new File(TASK_LISTS_PATH);
 
         if (rootFolder.exists() == false)
         {
@@ -33,58 +32,13 @@ public class StorageService
     }
 
     /**
-     * Löscht eine Liste auf dem Computer.
-     * @param listName Der Name der Liste.
-     * @return Gibt zurück, ob das Löschen erfolgreich war.
-     */
-    public static boolean deleteTaskList(String listName)
-    {
-        return new File(TASK_LIST_PATH + listName).delete();
-    }
-
-    /**
-     * Fügt eine Liste eine Aufgabe hinzu.
-     * @param listName Den Name der Liste, in der die Aufgabe gespeichert werden soll.
-     * @param task Die zu-speichernde Aufgabe.
-     * @return Gibt zurück, ob das Speichern erfolgreich war.
-     * @throws IOException
-     */
-    public static boolean addTask(String listName, Task task) throws IOException {
-        File file = new File(TASK_LIST_PATH + listName);
-
-        if (file.exists() == false)
-        {
-            return false;
-        }
-
-        FileWriter writer = new FileWriter(file, true);
-
-        writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationDate()
-                + ";" + task.getNote() + ";" + task.isFinished() + "\n");
-
-        writer.close();
-
-        return true;
-    }
-
-    /**
-     * Speichert eine Aufgabe innerhalb einer Liste auf dem Computer.
-     * @param task Die zu-löschende Aufgabe.
-     * @return
-     */
-    public static boolean deleteTask(Task task)
-    {
-        return false;
-    }
-
-    /**
      * Gibt alle auf dem Computer gespeicherten Listen zurück.
      * @throws FileNotFoundException
      */
-    public static List<TaskList> getTaskLists() throws FileNotFoundException
+    public static ArrayList<TaskList> getTaskLists() throws FileNotFoundException
     {
         ArrayList<TaskList> taskLists = new ArrayList<>();
-        File rootFolder = new File(TASK_LIST_PATH);
+        File rootFolder = new File(TASK_LISTS_PATH);
 
         for (File file : rootFolder.listFiles())
         {
@@ -96,6 +50,7 @@ public class StorageService
                 String[] data = reader.nextLine().split(";");
 
                 String title = data[0];
+
                 TaskPriority priority = TaskPriority.valueOf(data[1]);
 
                 LocalDate endDate = null;
@@ -109,10 +64,10 @@ public class StorageService
 
                 boolean isFinished = Boolean.parseBoolean(data[5]);
 
-
                 list.add(new Task(title, priority, endDate, notificationDate, note, isFinished));
             }
 
+            reader.close();
             taskLists.add(list);
         }
 
@@ -126,7 +81,7 @@ public class StorageService
      */
     public static void saveTaskList(TaskList list) throws IOException
     {
-        File file = new File(TASK_LIST_PATH + list.getName());
+        File file = new File(TASK_LISTS_PATH + list.getName());
 
         if (file.exists())
         {
@@ -134,14 +89,25 @@ public class StorageService
         }
 
         file.createNewFile();
+
         FileWriter writer = new FileWriter(file);
 
         for (Task task : list.getTasks())
         {
-            addTask(list.getName(), task);
-            //writer.append(task.getTitle() + ";" + task.getEndDate() + ";" + task.isFinished() + "\n");
+            writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationDate()
+                    + ";" + task.getNote() + ";" + task.isFinished() + "\n");
         }
 
         writer.close();
+    }
+
+    /**
+     * Löscht eine Liste auf dem Computer.
+     * @param list Die Liste.
+     * @return Gibt zurück, ob das Löschen erfolgreich war.
+     */
+    public static boolean deleteTaskList(TaskList list)
+    {
+        return new File(TASK_LISTS_PATH + list.getName()).delete();
     }
 }

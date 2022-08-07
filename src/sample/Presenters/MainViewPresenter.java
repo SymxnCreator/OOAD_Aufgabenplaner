@@ -363,7 +363,7 @@ public class MainViewPresenter implements INotify, Initializable
 
     /**
      * Selektiert eine Aufgabeliste und bereitet die UI dafür auf.
-     * @param list Die zu-selektierende Liste.
+     * @param list Die Liste.
      */
     private void selectTaskList(TaskList list)
     {
