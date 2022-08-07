@@ -1,7 +1,7 @@
 package sample.Services;
 
 import sample.Enums.NotificationTime;
-import sample.Interfaces.Notificatable;
+import sample.Interfaces.TaskNotificatable;
 import sample.Models.Task;
 import sample.Models.TaskList;
 import java.time.LocalDateTime;
@@ -15,10 +15,11 @@ public class NotificationService
 {
     /**
      * Startet den Erinnerungsdienst.
-     * @param consumer Die Klasse, die benachrichtigt werden soll, wenn eine Aufgabe ansteht.
+     * @param consumer Die Klasse, die benachrichtigt werden soll, wenn eine Aufgabe bald fällig wird.
      * @param lists Die Aufgabenlisten.
+     * @author Simon Schnitker
      */
-    public static void run(Notificatable consumer, List<TaskList> lists)
+    public static void run(TaskNotificatable consumer, List<TaskList> lists)
     {
         if (consumer == null)
         {
