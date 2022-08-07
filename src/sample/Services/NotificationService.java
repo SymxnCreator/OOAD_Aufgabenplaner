@@ -4,12 +4,20 @@ import sample.Enums.NotificationTime;
 import sample.Interfaces.Notificatable;
 import sample.Models.Task;
 import sample.Models.TaskList;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Eine Service-Klasse, die für das Senden von Erinnerungen zuständig ist.
+ * @author Simon Schnitker
+ */
 public class NotificationService
 {
+    /**
+     * Startet den Erinnerungsdienst.
+     * @param consumer Die Klasse, die benachrichtigt werden soll, wenn eine Aufgabe ansteht.
+     * @param lists Die Aufgabenlisten.
+     */
     public static void run(Notificatable consumer, List<TaskList> lists)
     {
         if (consumer == null)
@@ -25,10 +33,9 @@ public class NotificationService
                 {
                     for (Task task : taskList.getTasks())
                     {
-                        if (task.getNotificationTime() != NotificationTime.Never && task.hasUserNotified() == false && LocalDate.now().compareTo(task.getNotificationDate()) > 0)
+                        if (task.getNotificationTime() != NotificationTime.Never && task.hasUserNotified() == false && LocalDateTime.now().compareTo(task.getNotificationDate()) > 0)
                         {
                             task.setHasUserNotified(true);
-                            System.out.println(task.getTitle());
                             consumer.notifiy(task);
                         }
                     }

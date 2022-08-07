@@ -13,6 +13,7 @@ import sample.Models.Task;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 /**
@@ -49,7 +50,7 @@ public class NewTaskPresenter implements Initializable
         }
 
         this.title_TextField.setText(this.passedTask.getTitle());
-        this.endDate_DatePicker.setValue(this.passedTask.getEndDate());
+        this.endDate_DatePicker.setValue(this.passedTask.getEndDate().toLocalDate());
         this.note_TextArea.setText(this.passedTask.getNote());
 
         switch (this.passedTask.getPriority())
@@ -104,7 +105,7 @@ public class NewTaskPresenter implements Initializable
     public void addTask_OnAction(ActionEvent event) throws IOException
     {
         String title = title_TextField.getText();
-        LocalDate endDate = endDate_DatePicker.getValue();
+        LocalDateTime endDate = endDate_DatePicker.getValue().atStartOfDay();
         NotificationTime notificationTime = NotificationTime.Never;
         TaskPriority priority = TaskPriority.Medium;
         String note = note_TextArea.getText();
