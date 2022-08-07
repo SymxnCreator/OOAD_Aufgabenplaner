@@ -37,7 +37,7 @@
             <children>
                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToMainView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Zurück" textFill="WHITE" GridPane.rowIndex="1">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Button>
             </children>
         </GridPane>
@@ -67,7 +67,7 @@
                        </items>
                    </ChoiceBox>
                   <TextArea fx:id="textToSend" layoutX="20.0" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
-                  <Button styleClass="BlueBtn" layoutX="25.0" layoutY="392.0" mnemonicParsing="false" onAction="#send_OnAction" text="Absenden" textFill="WHITE">
+                  <Button layoutX="25.0" layoutY="392.0" mnemonicParsing="false" onAction="#send_OnAction" styleClass="BlueBtn" text="Absenden" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>

@@ -46,13 +46,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
+            <Button id="SettingsBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
                <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" />
+               </padding></Button>
+            <Button id="StatisticsBtn" layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" prefHeight="39.0" prefWidth="215.0" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Button>
          </children>
       </GridPane>
@@ -94,12 +97,24 @@
             <Insets left="40.0" right="40.0" />
          </padding>
       </GridPane>
-       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="596.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
       <Separator orientation="VERTICAL" GridPane.halignment="RIGHT">
          <GridPane.margin>
             <Insets right="-5.0" />
          </GridPane.margin>
       </Separator>
+      <ListView id="GroupTaskList" fx:id="TaskGroups_ListView1" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="190.0" prefWidth="215.0" styleClass="noFocus" GridPane.valignment="BOTTOM" />
+       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="349.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets top="80.0" />
+         </GridPane.margin></ListView>
+      <Label text="Erinnerung">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="15.0" top="240.0" />
+         </GridPane.margin>
+      </Label>
    </children>
     <stylesheets>
         <URL value="@Styles/Styles.css" />

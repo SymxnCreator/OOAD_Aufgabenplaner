@@ -46,13 +46,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
+            <Button id="SettingsBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToSettingsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Einstellungen" textFill="WHITE" GridPane.rowIndex="1">
                <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" />
+               </padding></Button>
+            <Button id="StatisticsBtn" layoutX="10.0" layoutY="112.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#switchToStatisticsView_OnAction" prefHeight="39.0" prefWidth="215.0" styleClass="MenuBtn" text="Statistiken" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Button>
          </children>
       </GridPane>

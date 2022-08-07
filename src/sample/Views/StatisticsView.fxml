@@ -33,7 +33,7 @@
             <children>
                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToMainView_OnAction" prefHeight="69.0" prefWidth="217.0" styleClass="MenuBtn" text="Zurück" textFill="WHITE" GridPane.rowIndex="1">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Button>
             </children>
         </GridPane>
@@ -88,7 +88,7 @@
                         <Font name="System Bold" size="45.0" />
                      </font>
                   </Label>
-                  <Label fx:id="NumberTastCanceled" contentDisplay="CENTER" layoutX="65.0" layoutY="119.0" text="Aufgaben abgebrochen" textAlignment="CENTER">
+                  <Label contentDisplay="CENTER" layoutX="87.0" layoutY="118.0" text="Erfolgreiste Liste" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
