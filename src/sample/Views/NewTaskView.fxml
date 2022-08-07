@@ -109,7 +109,7 @@
             <Insets right="50.0" />
          </GridPane.margin>
       </ImageView>
-      <ComboBox fx:id="hours_Combobox" value="00" prefHeight="25.0" prefWidth="68.0" promptText="00" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <ComboBox fx:id="hours_Combobox" disable="true" value="00" prefHeight="25.0" prefWidth="68.0" promptText="00" GridPane.columnIndex="1" GridPane.rowIndex="4">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="00" />
@@ -140,7 +140,7 @@
               </FXCollections>
           </items>
       </ComboBox>
-      <ComboBox fx:id="minutes_Combobox" value="00" prefHeight="25.0" prefWidth="68.0" promptText="00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+      <ComboBox fx:id="minutes_Combobox" disable="true" value="00" prefHeight="25.0" prefWidth="68.0" promptText="00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
          <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="00" />

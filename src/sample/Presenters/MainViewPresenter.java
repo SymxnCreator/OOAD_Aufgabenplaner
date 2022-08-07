@@ -223,7 +223,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
                 if (item == null)
                 {
-                    //setGraphic(null);
+                    setGraphic(null);
                     setText("");
                 }
                 else
