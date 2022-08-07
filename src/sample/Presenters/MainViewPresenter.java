@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -98,7 +99,6 @@ public class MainViewPresenter implements Notificatable, Initializable
         tasks_ListView.setCellFactory(o -> new ListCell<Task>()
         {
             private final CheckBox checkBox = new CheckBox();
-            private final ProgressBar progressBar = new ProgressBar();
             private final Label title_Label = new Label();
             private final Label endDate_Label = new Label();
             private final Button editTask_Button = new Button("Bearbeiten");
@@ -192,7 +192,6 @@ public class MainViewPresenter implements Notificatable, Initializable
             protected void updateItem(Task item, boolean empty)
             {
                 super.updateItem(item, empty);
-                progressBar.progressProperty().unbind();
 
                 if (item == null)
                 {
@@ -204,7 +203,7 @@ public class MainViewPresenter implements Notificatable, Initializable
                     setGraphic(gridPane);
                     title_Label.setText(item.getTitle());
 
-                    if (item.getEndDate() == LocalDate.MIN)
+                    if (item.getEndDate() == null || item.getEndDate() == LocalDateTime.MIN)
                     {
                         endDate_Label.setText("Kein Enddatum");
                     }
@@ -214,8 +213,6 @@ public class MainViewPresenter implements Notificatable, Initializable
                     }
 
                     checkBox.setSelected(item.isFinished());
-                    //progressBar.progressProperty().bind(item.progressProperty());
-
                 }
             }
         });
