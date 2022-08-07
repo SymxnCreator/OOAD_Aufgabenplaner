@@ -15,6 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Interfaces.TaskNotificatable;
@@ -237,7 +239,11 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                     }
                     else
                     {
-                        endDate_Label.setText("Fällig am " + item.getEndDate());
+                        LocalDateTime dateTime = item.getEndDate();
+
+                        if (dateTime.isAfter(LocalDateTime.now())) endDate_Label.setTextFill(Color.RED);
+
+                        endDate_Label.setText("Fällig am " + dateTime.getDayOfMonth() + "." + dateTime.getMonthValue() + "." + dateTime.getYear() + " um " + dateTime.getHour() + ":" + dateTime.getMinute() + " Uhr");
                     }
 
                     checkBox.setSelected(item.isFinished());
