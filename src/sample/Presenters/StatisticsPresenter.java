@@ -34,7 +34,7 @@ public class StatisticsPresenter implements Initializable
     @FXML
     private Label NumberOfTasksNotDone_Label;
     @FXML
-    private Label NumberOfDeletedTasks_Label;
+    private Label MostSuccessfulList_Label;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -52,6 +52,7 @@ public class StatisticsPresenter implements Initializable
 
         NumberOfTasksDone_Label.setText(String.valueOf(StatisticService.sumAllTasksDone(taskLists)));
         NumberOfTasksNotDone_Label.setText(String.valueOf(StatisticService.sumAllTasksNotDone(taskLists)));
+        MostSuccessfulList_Label.setText("Noice");
     }
 
     /**

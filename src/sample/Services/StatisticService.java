@@ -43,7 +43,8 @@ public class StatisticService
         return counter;
     }
 
-    static TaskList getMostSuccessfulGroup(ArrayList<TaskList> taskLists) {
+    static TaskList getMostSuccessfulList(ArrayList<TaskList> taskLists)
+    {
         if (taskLists.size() == 0) return null;
 
         TaskList tl1 = taskLists.get(0);

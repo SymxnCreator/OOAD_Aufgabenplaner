@@ -1,5 +1,6 @@
 package sample.Services;
 
+import sample.Enums.NotificationTime;
 import sample.Enums.TaskPriority;
 import sample.Models.Task;
 import sample.Models.TaskList;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 /**
  * Eine Service-Klasse, die für das permanente Speichern von Benutzer-erstellten Daten zuständig ist.
+ * @author Simon Schnitker
  */
 public class StorageService
 {
@@ -56,8 +58,7 @@ public class StorageService
                 LocalDate endDate = null;
                 if (!data[2].equals("null")) endDate = LocalDate.parse(data[2]);
 
-                LocalDate notificationDate = null;
-                if (!data[3].equals("null")) notificationDate = LocalDate.parse(data[3]);
+                NotificationTime notificationDate = NotificationTime.valueOf(data[3]);
 
                 String note = null;
                 if (!data[4].equals("null")) note = data[4];
@@ -94,7 +95,7 @@ public class StorageService
 
         for (Task task : list.getTasks())
         {
-            writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationDate()
+            writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationTime()
                     + ";" + task.getNote() + ";" + task.isFinished() + "\n");
         }
 
@@ -103,7 +104,7 @@ public class StorageService
 
     /**
      * Löscht eine Liste auf dem Computer.
-     * @param list Die Liste.
+     * @param list Die zu-löschende Liste.
      * @return Gibt zurück, ob das Löschen erfolgreich war.
      */
     public static boolean deleteTaskList(TaskList list)

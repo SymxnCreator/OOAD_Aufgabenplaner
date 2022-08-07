@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
@@ -24,6 +25,8 @@ public class SettingsPresenter
     private Parent root;
     @FXML
     TextArea textToSend;
+    @FXML
+    Label MsgSend_Label;
 
     /**
      * Wechselt die Hauptansicht zur MainView (Aufgabenübersicht).
@@ -44,9 +47,9 @@ public class SettingsPresenter
      * @param event
      */
     @FXML
-    public void send_OnAction(ActionEvent event)
+    public void send_OnAction(ActionEvent event) throws InterruptedException
     {
         this.textToSend.setText("");
-        // TODO: Meldung ausgeben
+        this.MsgSend_Label.setVisible(true);
     }
 }

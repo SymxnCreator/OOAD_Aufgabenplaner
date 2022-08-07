@@ -83,12 +83,12 @@
                </children></Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="275.0" styleClass="Statisticblock" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="NumberTastCanceled" layoutX="125.0" layoutY="45.0" text="0">
+                  <Label fx:id="MostSuccessfulList_Label" layoutX="125.0" layoutY="45.0" text="0">
                      <font>
                         <Font name="System Bold" size="45.0" />
                      </font>
                   </Label>
-                  <Label fx:id="NumberTastCanceled" contentDisplay="CENTER" layoutX="65.0" layoutY="119.0" text="Aufgaben abgebrochen" textAlignment="CENTER">
+                  <Label contentDisplay="CENTER" layoutX="65.0" layoutY="119.0" text="Aufgaben abgebrochen" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>

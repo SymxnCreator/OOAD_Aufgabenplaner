@@ -2,7 +2,7 @@ package sample.Interfaces;
 
 import sample.Models.Task;
 
-public interface INotify
+public interface Notificatable
 {
     void notifiy(Task task);
 }

@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,25 +14,28 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.Interfaces.INotify;
+import sample.Interfaces.Notificatable;
 import sample.Main;
 import sample.Models.Task;
 import sample.Models.TaskList;
+import sample.Services.NotificationService;
 import sample.Services.StorageService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * Steuerklasse der MainView.fxml
  */
-public class MainViewPresenter implements INotify, Initializable
+public class MainViewPresenter implements Notificatable, Initializable
 {
     /**
      * Name der Standard-Aufgabenliste, die erstellt wird, falls keine Listen vorhanden sind.
@@ -47,26 +52,24 @@ public class MainViewPresenter implements INotify, Initializable
     private Parent root;
 
     @FXML
-    ListView<TaskList> TaskGroups_ListView;
+    ListView<TaskList> taskLists_ListView;
 
     @FXML
-    ListView<Task> Tasks_ListView;
+    ListView<Task> tasks_ListView;
 
     @FXML
-    Label taskListTitle;
+    ListView<String> notifications_ListView;
+
+    @FXML
+    Label taskListTitle_Label;
 
     @FXML
     ChoiceBox filter_ChoiceBox;
 
-    @FXML
-    GridPane rootPane;
-
     @Override
     public void notifiy(Task task)
     {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Erinnerung");
-        alert.setContentText("Aufgabe ist fällig: " + task.getTitle());
+        this.notifications_ListView.getItems().add(task.getTitle());
     }
 
     @Override
@@ -74,7 +77,7 @@ public class MainViewPresenter implements INotify, Initializable
     {
         PresenterLocator.taskPresenter = this;
 
-        TaskGroups_ListView.setCellFactory(o -> new ListCell<TaskList>()
+        taskLists_ListView.setCellFactory(o -> new ListCell<TaskList>()
         {
             @Override
             protected void updateItem(TaskList item, boolean empty)
@@ -92,7 +95,7 @@ public class MainViewPresenter implements INotify, Initializable
             }
         });
 
-        Tasks_ListView.setCellFactory(o -> new ListCell<Task>()
+        tasks_ListView.setCellFactory(o -> new ListCell<Task>()
         {
             private final CheckBox checkBox = new CheckBox();
             private final ProgressBar progressBar = new ProgressBar();
@@ -100,18 +103,68 @@ public class MainViewPresenter implements INotify, Initializable
             private final Label endDate_Label = new Label();
             private final Button editTask_Button = new Button("Bearbeiten");
             private final Button deleteTask_Button = new Button("Löschen");
-            private final HBox content = new HBox(checkBox, title_Label, endDate_Label, editTask_Button, deleteTask_Button);
+            private final  HBox hBox = new HBox(editTask_Button, deleteTask_Button);
+            private final GridPane gridPane = new GridPane();
             {
+                checkBox.setAlignment(Pos.CENTER);
+                gridPane.setPadding(new Insets(8,12,8,12));
+                checkBox.setPadding(new Insets(0,12,0,0));
+                title_Label.setPadding(new Insets(0,12,0,0));
+                title_Label.getStyleClass().add("TaskTitle");
+                endDate_Label.setPadding(new Insets(0,12,0,0));
+                endDate_Label.getStyleClass().add("TaskEndDate");
+                editTask_Button.getStyleClass().add("BlueBtn");
+                deleteTask_Button.getStyleClass().add("BlueBtn");
+                hBox.setAlignment(Pos.CENTER);
+                hBox.setSpacing(8);
+
+                gridPane.add(checkBox, 0, 0, 1, 2);
+                gridPane.add(title_Label, 1, 0);
+                gridPane.add(endDate_Label, 1, 1);
+                gridPane.add(hBox, 2, 0, 1, 2);
+
+                ColumnConstraints c1 = new ColumnConstraints();
+                c1.setHgrow(Priority.NEVER);
+                ColumnConstraints c2 = new ColumnConstraints();
+                c2.setHgrow(Priority.ALWAYS);
+                gridPane.getColumnConstraints().addAll(c1, c2);
+
+                editTask_Button.setOnAction(event ->
+                {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Views/NewTaskView.fxml"));
+                    NewTaskPresenter presenter = new NewTaskPresenter();
+                    presenter.passTask(getItem());
+                    loader.setController(presenter);
+
+                    Parent root = null;
+                    try
+                    {
+                        root = loader.load();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    Scene scene = new Scene(root);
+                    Stage primaryStage = new Stage();
+                    primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+                    primaryStage.setResizable(false);
+                    primaryStage.setTitle("Aufgabe bearbeiten");
+                    primaryStage.setScene(scene);
+                    primaryStage.initModality(Modality.NONE);
+                    primaryStage.show();
+                });
+
                 deleteTask_Button.setOnAction(event ->
                 {
                     Task task = getItem();
-                    Tasks_ListView.getItems().remove(task);
-                    TaskList selectedList = TaskGroups_ListView.getSelectionModel().getSelectedItem();
+                    tasks_ListView.getItems().remove(task);
+                    TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
                     selectedList.remove(task);
 
                     try
                     {
-                        StorageService.saveTaskList(TaskGroups_ListView.getSelectionModel().getSelectedItem());
+                        StorageService.saveTaskList(taskLists_ListView.getSelectionModel().getSelectedItem());
                     }
                     catch (IOException e)
                     {
@@ -126,7 +179,7 @@ public class MainViewPresenter implements INotify, Initializable
 
                     try
                     {
-                        StorageService.saveTaskList(TaskGroups_ListView.getSelectionModel().getSelectedItem());
+                        StorageService.saveTaskList(taskLists_ListView.getSelectionModel().getSelectedItem());
                     }
                     catch (IOException e)
                     {
@@ -148,10 +201,14 @@ public class MainViewPresenter implements INotify, Initializable
                 }
                 else
                 {
-                    setGraphic(content);
+                    setGraphic(gridPane);
                     title_Label.setText(item.getTitle());
 
-                    if (item.getEndDate() != null)
+                    if (item.getEndDate() == LocalDate.MIN)
+                    {
+                        endDate_Label.setText("Kein Enddatum");
+                    }
+                    else
                     {
                         endDate_Label.setText("Fällig am " + item.getEndDate());
                     }
@@ -167,15 +224,16 @@ public class MainViewPresenter implements INotify, Initializable
         loadTaskLists();
 
         // Standardliste hinzufügen, wenn keine Listen vorhanden sind
-        if (this.TaskGroups_ListView.getItems().size() == 0)
+        if (this.taskLists_ListView.getItems().size() == 0)
         {
             addDefaultList();
         }
 
         // Erste Liste selektieren
-        selectTaskList(TaskGroups_ListView.getItems().get(0));
+        selectTaskList(taskLists_ListView.getItems().get(0));
 
-        //NotificationService.run(this, TaskGroups_ListView.getItems());
+        // Erinnerungsprozess starten
+        NotificationService.run(this, taskLists_ListView.getItems());
     }
 
     /**
@@ -214,7 +272,9 @@ public class MainViewPresenter implements INotify, Initializable
     @FXML
     public void openNewTaskWindow(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/NewTaskView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Views/NewTaskView.fxml"));
+        loader.setController(new NewTaskPresenter());
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
@@ -250,7 +310,16 @@ public class MainViewPresenter implements INotify, Initializable
     @FXML
     public void filterTasks_OnAction(ActionEvent event)
     {
-
+        if (filter_ChoiceBox.getValue().toString().contentEquals("Nach Datum"))
+        {
+            Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getEndDate().compareTo(y.getEndDate()));
+            Collections.reverse(tasks_ListView.getItems());
+        }
+        else
+        {
+            Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getPriority().compareTo(y.getPriority()));
+            Collections.reverse(tasks_ListView.getItems());
+        }
     }
 
     /**
@@ -259,7 +328,7 @@ public class MainViewPresenter implements INotify, Initializable
     @FXML
     public void GroupListView_Clicked(MouseEvent event)
     {
-        TaskList selectedList = TaskGroups_ListView.getSelectionModel().getSelectedItem();
+        TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
         selectTaskList(selectedList);
     }
 
@@ -274,17 +343,17 @@ public class MainViewPresenter implements INotify, Initializable
             return;
         }
 
-        TaskList selectedList = TaskGroups_ListView.getSelectionModel().getSelectedItem();
+        TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
 
         // Liste auf dem Computer und lokal löschen
         boolean deleted = StorageService.deleteTaskList(selectedList);
 
         if (deleted)
         {
-            TaskGroups_ListView.getItems().remove(selectedList);
+            taskLists_ListView.getItems().remove(selectedList);
 
             // Erste Liste selektieren
-            selectTaskList(TaskGroups_ListView.getItems().get(0));
+            selectTaskList(taskLists_ListView.getItems().get(0));
         }
         else
         {
@@ -297,15 +366,30 @@ public class MainViewPresenter implements INotify, Initializable
     /**
      * Fügt die übergebene Aufgabe der aktuell-ausgewählten Aufgabenliste hinzu.
      * Wird von der Klasse "NewTaskPresenter" aufgerufen.
-     * @param task
+     * @param task Die hinzuzufügende Aufgabe.
+     * @throws IOException
      */
     public void addTask(Task task) throws IOException
     {
-        TaskList selectedList = TaskGroups_ListView.getSelectionModel().getSelectedItem();
+        TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
         selectedList.add(task);
-        Tasks_ListView.getItems().add(task);
+        tasks_ListView.getItems().add(task);
 
         // Liste auf dem Computer speichern
+        StorageService.saveTaskList(selectedList);
+    }
+
+    /**
+     * Aktualisiert die Aufgaben in der ListView und lokal auf dem Computer.
+     * Wird von der Klasse "NewTaskPresenter" aufgerufen, wenn die Daten einer Aufgabe bearbeitet wurden.
+     * @throws IOException
+     */
+    public void refreshTasks() throws IOException
+    {
+        tasks_ListView.refresh();
+
+        // Liste auf dem Computer speichern
+        TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
         StorageService.saveTaskList(selectedList);
     }
 
@@ -317,7 +401,7 @@ public class MainViewPresenter implements INotify, Initializable
     public void createTaskList(String name) throws IOException
     {
         // Prüfen, ob bereits eine Liste mit diesem Namen existiert
-        for (TaskList taskList : this.TaskGroups_ListView.getItems())
+        for (TaskList taskList : this.taskLists_ListView.getItems())
         {
             if (taskList.getName().contentEquals(name))
             {
@@ -329,7 +413,7 @@ public class MainViewPresenter implements INotify, Initializable
         }
 
         TaskList list = new TaskList(name);
-        TaskGroups_ListView.getItems().add(list);
+        taskLists_ListView.getItems().add(list);
 
         // Liste auf dem Computer speichern
         StorageService.saveTaskList(list);
@@ -347,7 +431,7 @@ public class MainViewPresenter implements INotify, Initializable
         {
             // Gespeicherte Aufgabenlisten laden
             ArrayList<TaskList> taskLists = StorageService.getTaskLists();
-            this.TaskGroups_ListView.getItems().addAll(taskLists);
+            this.taskLists_ListView.getItems().addAll(taskLists);
         }
         catch (FileNotFoundException e)
         {
@@ -361,7 +445,7 @@ public class MainViewPresenter implements INotify, Initializable
     private void addDefaultList()
     {
         TaskList defaultTaskList = new TaskList(DEFAULT_TASK_LIST_NAME);
-        this.TaskGroups_ListView.getItems().add(defaultTaskList);
+        this.taskLists_ListView.getItems().add(defaultTaskList);
 
         try
         {
@@ -379,11 +463,11 @@ public class MainViewPresenter implements INotify, Initializable
      */
     private void selectTaskList(TaskList list)
     {
-        TaskGroups_ListView.getSelectionModel().select(list);
-        taskListTitle.setText(list.getName());
+        taskLists_ListView.getSelectionModel().select(list);
+        taskListTitle_Label.setText(list.getName());
 
         // Aufgaben der Liste anzeigen
-        Tasks_ListView.getItems().clear();
-        Tasks_ListView.getItems().addAll(list.getTasks());
+        tasks_ListView.getItems().clear();
+        tasks_ListView.getItems().addAll(list.getTasks());
     }
 }

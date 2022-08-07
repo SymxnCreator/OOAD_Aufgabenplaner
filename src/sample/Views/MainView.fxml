@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" maxHeight="800.0" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.MainViewPresenter">
+<GridPane maxHeight="800.0" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.MainViewPresenter">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.6666259765625" minWidth="10.0" prefWidth="214.9999796549479" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1056.0" minWidth="10.0" prefWidth="984.3333536783854" />
@@ -78,7 +78,7 @@
                 </items>
             </ChoiceBox>
 
-            <Label fx:id="taskListTitle" prefHeight="45.0" prefWidth="319.0">
+            <Label fx:id="taskListTitle_Label" prefHeight="45.0" prefWidth="319.0">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -86,7 +86,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <ListView id="TaskListView" fx:id="Tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="497.0" prefWidth="906.0" styleClass="noFocus" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <ListView id="TaskListView" fx:id="tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="497.0" prefWidth="906.0" styleClass="noFocus" GridPane.rowIndex="1" GridPane.valignment="TOP">
 
             </ListView>
          </children>
@@ -94,7 +94,7 @@
             <Insets left="40.0" right="40.0" />
          </padding>
       </GridPane>
-       <ListView id="GroupTaskList" fx:id="TaskGroups_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="596.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+       <ListView id="GroupTaskList" fx:id="taskLists_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="596.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
       <Separator orientation="VERTICAL" GridPane.halignment="RIGHT">
          <GridPane.margin>
             <Insets right="-5.0" />

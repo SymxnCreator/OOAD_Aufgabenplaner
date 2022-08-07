@@ -5,11 +5,10 @@ import sample.Enums.TaskPriority;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAmount;
-import java.util.Date;
 
 /**
  * Definiert den Aufbau einer Aufgabe.
+ * @author Simon Schnitker, Megan Diekmann
  */
 public class Task
 {
@@ -25,19 +24,16 @@ public class Task
 
     /**
      * Gibt an, wann die Aufgabe fällig ist.
-     * (Optional)
      */
     private LocalDate endDate;
 
     /**
      * Gibt an, wann der Nutzer an die Aufgabe erinnert wird.
-     * (Optional)
      */
-    private LocalDate notificationDate;
+    private NotificationTime notificationTime;
 
     /**
      * Gibt die Notiz/Beschreibung der Aufgabe an.
-     * (Optional)
      */
     private String note;
 
@@ -47,35 +43,51 @@ public class Task
     private boolean isFinished;
 
     /**
-     * Konstruktor zur Erstellung einer neuen Aufgabe.
-     * @param title Der Name der Aufgabe.
-     * @param priority Die Wichtigkeit der Aufgabe.
+     * Gibt an, ob der Benutzer vom Benachrichtigungssystem über diese Aufgabe informiert wurde.
+     * Dient dazu, damit der Benutzer während der laufenden Sitzung nur einmal erinnert wird.
      */
-    public Task(String title, TaskPriority priority, String note)
-    {
-        this.title = title;
-        this.priority = priority;
-        this.note = note;
-        this.isFinished = false;
-    }
+    private boolean hasUserNotified;
 
     /**
-     * Konstruktor zum Laden der Aufgaben.
+     * Konstruktor zum Erstellen einer Aufgabe.
      * @param title Der Name der Aufgabe.
      * @param priority Die Wichtigkeit der Aufgabe.
      * @param endDate Das Datum, wann die Aufgabe fällig ist.
-     * @param notificationDate Das Datum, wann die Erinnerung der Aufgabe ist.
+     * @param notificationTime Das Datum, wann die Erinnerung der Aufgabe ist.
      * @param note Die Notiz der Aufgabe.
      * @param isFinished Ist die Aufgabe erledigt?
      */
-    public Task(String title, TaskPriority priority, LocalDate endDate, LocalDate notificationDate, String note, boolean isFinished)
+    public Task(String title, TaskPriority priority, LocalDate endDate, NotificationTime notificationTime, String note, boolean isFinished)
     {
         this.title = title;
         this.priority = priority;
         this.endDate = endDate;
-        this.notificationDate = notificationDate;
+        this.notificationTime = notificationTime;
         this.note = note;
         this.isFinished = isFinished;
+        this.hasUserNotified = false;
+    }
+
+    public LocalDate getNotificationDate()
+    {
+        if (endDate == null)
+        {
+            return LocalDate.MIN;
+        }
+
+        switch (this.notificationTime) {
+            case Hour: {
+                return endDate.minus(1, ChronoUnit.HOURS);
+            }
+            case Day: {
+                return endDate.minusDays(1);
+            }
+            case Week: {
+                return endDate.minusWeeks(1);
+            }
+            default:
+                return LocalDate.MIN;
+        }
     }
 
     public String getTitle() {
@@ -106,28 +118,13 @@ public class Task
         return priority;
     }
 
-    public LocalDate getNotificationDate() {
-        return notificationDate;
+    public NotificationTime getNotificationTime() {
+        return notificationTime;
     }
 
-    public void setNotificationDate(NotificationTime notificationTime) {
-        if (endDate != null) {
-            switch (notificationTime) {
-                case Hour: {
-                    this.notificationDate = endDate.minus(1, ChronoUnit.HOURS);
-                    break;
-                }
-                case Day: {
-                    this.notificationDate = endDate.minusDays(1);
-                    break;
-                }
-                case Week: {
-                    this.notificationDate = endDate.minusWeeks(1);
-                    break;
-                }
-                default: break;
-            }
-        }
+    public void setNotificationTime(NotificationTime notificationTime)
+    {
+        this.notificationTime = notificationTime;
     }
 
     public String getNote() {
@@ -140,5 +137,13 @@ public class Task
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public boolean hasUserNotified() {
+        return hasUserNotified;
+    }
+
+    public void setHasUserNotified(boolean hasUserNotified) {
+        this.hasUserNotified = hasUserNotified;
     }
 }

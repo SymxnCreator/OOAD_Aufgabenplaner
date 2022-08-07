@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Beschreibt den Aufbau einer Aufgabenliste.
+ * @author Simon Schnitker, Megan Diekmann
  */
 public class TaskList
 {
