@@ -38,6 +38,22 @@
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }
+#SettingsBtn{
+    -fx-background-image: url("../Resources/settings.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20 20;
+    -fx-background-position: 20% center;
+    -fx-border: none;
+}
+
+#StatisticsBtn{
+    -fx-background-image: url("../Resources/statistic.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20 20;
+    -fx-background-position: 20% center;
+    -fx-border: none;
+}
+
 
 .TaskEndDate
 {
