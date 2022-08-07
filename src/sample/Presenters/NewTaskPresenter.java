@@ -72,6 +72,8 @@ public class NewTaskPresenter implements Initializable
                 {
                     notificationTime_ChoiceBox.setDisable(false);
                     endTime_TextField.setDisable(false);
+                    //endTimeHours_TextField.setDisable(false);
+                    //endTimeMinutes_TextField.setDisable(false);
                 }
             }
         });
