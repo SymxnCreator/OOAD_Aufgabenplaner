@@ -66,6 +66,11 @@ public class Task
         this.note = note;
         this.isFinished = isFinished;
         this.hasUserNotified = false;
+
+        if (endDate == null)
+        {
+            this.endDate = LocalDate.MIN;
+        }
     }
 
     public LocalDate getNotificationDate()
