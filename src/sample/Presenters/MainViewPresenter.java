@@ -42,6 +42,7 @@ public class MainViewPresenter implements Notificatable, Initializable
      * Name der Standard-Aufgabenliste, die erstellt wird, falls keine Listen vorhanden sind.
      */
     private final String DEFAULT_TASK_LIST_NAME = "Meine Aufgaben";
+    private Stage primaryStage;
 
     @FXML
     private Stage stage;
@@ -131,28 +132,33 @@ public class MainViewPresenter implements Notificatable, Initializable
 
                 editTask_Button.setOnAction(event ->
                 {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Views/NewTaskView.fxml"));
-                    NewTaskPresenter presenter = new NewTaskPresenter();
-                    presenter.passTask(getItem());
-                    loader.setController(presenter);
+                    if (primaryStage == null || !primaryStage.isShowing()) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Views/NewTaskView.fxml"));
+                        NewTaskPresenter presenter = new NewTaskPresenter();
+                        presenter.passTask(getItem());
+                        loader.setController(presenter);
 
-                    Parent root = null;
-                    try
-                    {
-                        root = loader.load();
+                        Parent root = null;
+                        try
+                        {
+                            root = loader.load();
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        Scene scene = new Scene(root);
+                        primaryStage = new Stage();
+                        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+                        primaryStage.setResizable(false);
+                        primaryStage.setTitle("Aufgabe bearbeiten");
+                        primaryStage.setScene(scene);
+                        primaryStage.initModality(Modality.NONE);
+                        primaryStage.show();
+                    } else {
+                        primaryStage.toFront();
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    Scene scene = new Scene(root);
-                    Stage primaryStage = new Stage();
-                    primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
-                    primaryStage.setResizable(false);
-                    primaryStage.setTitle("Aufgabe bearbeiten");
-                    primaryStage.setScene(scene);
-                    primaryStage.initModality(Modality.NONE);
-                    primaryStage.show();
+
                 });
 
                 deleteTask_Button.setOnAction(event ->
@@ -269,17 +275,21 @@ public class MainViewPresenter implements Notificatable, Initializable
     @FXML
     public void openNewTaskWindow(ActionEvent event) throws IOException
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Views/NewTaskView.fxml"));
-        loader.setController(new NewTaskPresenter());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage primaryStage = new Stage();
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Neue Aufgabe");
-        primaryStage.setScene(scene);
-        primaryStage.initModality(Modality.NONE);
-        primaryStage.show();
+        if (primaryStage == null || !primaryStage.isShowing()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Views/NewTaskView.fxml"));
+            loader.setController(new NewTaskPresenter());
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage = new Stage();
+            primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+            primaryStage.setResizable(false);
+            primaryStage.setTitle("Neue Aufgabe");
+            primaryStage.setScene(scene);
+            primaryStage.initModality(Modality.NONE);
+            primaryStage.show();
+        } else {
+            primaryStage.toFront();
+        }
     }
 
     /**
@@ -288,17 +298,21 @@ public class MainViewPresenter implements Notificatable, Initializable
     @FXML
     public void createTaskList_OnAction(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/NewTaskListView.fxml"));
-        Scene scene = new Scene(root);
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("Neue Liste");
+        if (primaryStage == null || !primaryStage.isShowing()) {
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/NewTaskListView.fxml"));
+            Scene scene = new Scene(root);
+            primaryStage = new Stage();
+            primaryStage.setTitle("Neue Liste");
 
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
-        primaryStage.setResizable(false);
+            primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+            primaryStage.setResizable(false);
 
-        primaryStage.setScene(scene);
-        primaryStage.initModality(Modality.NONE);
-        primaryStage.show();
+            primaryStage.setScene(scene);
+            primaryStage.initModality(Modality.NONE);
+            primaryStage.show();
+        } else {
+            primaryStage.toFront();
+        }
     }
 
     /**
