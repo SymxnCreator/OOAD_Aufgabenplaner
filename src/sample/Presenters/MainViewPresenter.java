@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Interfaces.INotify;
+import sample.Main;
 import sample.Models.Task;
 import sample.Models.TaskList;
 import sample.Services.StorageService;
@@ -184,6 +186,8 @@ public class MainViewPresenter implements INotify, Initializable
     {
         Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/StatisticsView.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -197,6 +201,8 @@ public class MainViewPresenter implements INotify, Initializable
     {
         Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/SettingsView.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -211,6 +217,8 @@ public class MainViewPresenter implements INotify, Initializable
         Parent root = FXMLLoader.load(getClass().getResource("/sample/Views/NewTaskView.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Neue Aufgabe");
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.NONE);
@@ -227,6 +235,10 @@ public class MainViewPresenter implements INotify, Initializable
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Neue Liste");
+
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/sample/Views/Resources/calendar.png")));
+        primaryStage.setResizable(false);
+
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.NONE);
         primaryStage.show();

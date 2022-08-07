@@ -15,6 +15,9 @@ public class Main extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("Views/MainView.fxml"));
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("Views/Resources/calendar.png")));
+
+        primaryStage.setResizable(false);
+
         primaryStage.setTitle("Aufgabenplaner");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
