@@ -4,7 +4,9 @@ import sample.Enums.NotificationTime;
 import sample.Enums.TaskPriority;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 /**
  * Definiert den Aufbau einer Aufgabe.
@@ -25,7 +27,7 @@ public class Task
     /**
      * Gibt an, wann die Aufgabe fällig ist.
      */
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     /**
      * Gibt an, wann der Nutzer an die Aufgabe erinnert wird.
@@ -57,7 +59,7 @@ public class Task
      * @param note Die Notiz der Aufgabe.
      * @param isFinished Ist die Aufgabe erledigt?
      */
-    public Task(String title, TaskPriority priority, LocalDate endDate, NotificationTime notificationTime, String note, boolean isFinished)
+    public Task(String title, TaskPriority priority, LocalDateTime endDate, NotificationTime notificationTime, String note, boolean isFinished)
     {
         this.title = title;
         this.priority = priority;
@@ -69,20 +71,25 @@ public class Task
 
         if (endDate == null)
         {
-            this.endDate = LocalDate.MIN;
+            this.endDate = LocalDateTime.MIN;
         }
     }
 
-    public LocalDate getNotificationDate()
+    /**
+     * Berechnet das Datum, an dem die Erinnerung der Aufgabe fällig wird.
+     * @return Gibt das Datum und die Uhrzeit zurück.
+     * @author Megan Diekmann
+     */
+    public LocalDateTime getNotificationDate()
     {
         if (endDate == null)
         {
-            return LocalDate.MIN;
+            return LocalDateTime.MIN;
         }
 
         switch (this.notificationTime) {
             case Hour: {
-                return endDate.minus(1, ChronoUnit.HOURS);
+                return endDate.minusHours(1);
             }
             case Day: {
                 return endDate.minusDays(1);
@@ -91,7 +98,7 @@ public class Task
                 return endDate.minusWeeks(1);
             }
             default:
-                return LocalDate.MIN;
+                return LocalDateTime.MIN;
         }
     }
 
@@ -103,11 +110,11 @@ public class Task
         this.title = title;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

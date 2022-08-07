@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -204,7 +205,7 @@ public class MainViewPresenter implements Notificatable, Initializable
                     setGraphic(gridPane);
                     title_Label.setText(item.getTitle());
 
-                    if (item.getEndDate() == LocalDate.MIN)
+                    if (item.getEndDate() == LocalDateTime.MIN)
                     {
                         endDate_Label.setText("Kein Enddatum");
                     }

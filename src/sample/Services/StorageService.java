@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,8 +56,8 @@ public class StorageService
 
                 TaskPriority priority = TaskPriority.valueOf(data[1]);
 
-                LocalDate endDate = null;
-                if (!data[2].equals("null")) endDate = LocalDate.parse(data[2]);
+                LocalDateTime endDate = null;
+                if (!data[2].equals("null")) endDate = LocalDateTime.parse(data[2]);
 
                 NotificationTime notificationDate = NotificationTime.valueOf(data[3]);
 
@@ -95,6 +96,11 @@ public class StorageService
 
         for (Task task : list.getTasks())
         {
+            if (task.getEndDate() == LocalDateTime.MIN)
+            {
+                task.setEndDate(null);
+            }
+
             writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationTime()
                     + ";" + task.getNote() + ";" + task.isFinished() + "\n");
         }
