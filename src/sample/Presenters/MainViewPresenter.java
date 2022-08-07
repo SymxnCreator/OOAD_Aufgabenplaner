@@ -68,6 +68,9 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
     @FXML
     ChoiceBox filter_ChoiceBox;
 
+    @FXML
+    ListView<Task> tasksDone_ListView;
+
     @Override
     public void notifiy(Task task)
     {
@@ -115,7 +118,30 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
             }
         });
 
-        tasks_ListView.setCellFactory(o -> new ListCell<Task>()
+        setCellFactory(tasks_ListView);
+        setCellFactory(tasksDone_ListView);
+
+        // Aufgabenlisten laden
+        loadTaskLists();
+
+        // Standardliste hinzufügen, wenn keine Listen vorhanden sind
+        if (this.taskLists_ListView.getItems().size() == 0)
+        {
+            addDefaultList();
+        }
+
+        // Erste Liste selektieren
+        selectTaskList(taskLists_ListView.getItems().get(0));
+
+        // Erinnerungsprozess starten
+        NotificationService.run(this, taskLists_ListView.getItems());
+    }
+
+    /**
+     * Erstellt die einzelnen Aufgabezellen der Listen.
+     */
+    public void setCellFactory(ListView<Task> listView) {
+        listView.setCellFactory(o -> new ListCell<Task>()
         {
             private final CheckBox checkBox = new CheckBox();
             private final Label title_Label = new Label();
@@ -182,7 +208,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                 deleteTask_Button.setOnAction(event ->
                 {
                     Task task = getItem();
-                    tasks_ListView.getItems().remove(task);
+                    listView.getItems().remove(task);
                     TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
                     selectedList.remove(task);
                     notifications_ListView.getItems().remove(task);
@@ -205,7 +231,15 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                     if (task.isFinished())
                     {
                         notifications_ListView.getItems().remove(task);
+
+                        tasksDone_ListView.getItems().add(task);
+                        tasks_ListView.getItems().remove(task);
+                    } else {
+                        tasksDone_ListView.getItems().remove(task);
+                        tasks_ListView.getItems().add(task);
                     }
+                    filterTasks_OnAction(event);
+
 
                     try
                     {
@@ -241,8 +275,6 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                     {
                         LocalDateTime dateTime = item.getEndDate();
 
-                        if (dateTime.isAfter(LocalDateTime.now())) endDate_Label.setTextFill(Color.RED);
-
                         endDate_Label.setText("Fällig am " + dateTime.getDayOfMonth() + "." + dateTime.getMonthValue() + "." + dateTime.getYear() + " um " + dateTime.getHour() + ":" + dateTime.getMinute() + " Uhr");
                     }
 
@@ -250,21 +282,6 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                 }
             }
         });
-
-        // Aufgabenlisten laden
-        loadTaskLists();
-
-        // Standardliste hinzufügen, wenn keine Listen vorhanden sind
-        if (this.taskLists_ListView.getItems().size() == 0)
-        {
-            addDefaultList();
-        }
-
-        // Erste Liste selektieren
-        selectTaskList(taskLists_ListView.getItems().get(0));
-
-        // Erinnerungsprozess starten
-        NotificationService.run(this, taskLists_ListView.getItems());
     }
 
     /**
@@ -360,12 +377,10 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
             }
 
             Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getEndDate().compareTo(y.getEndDate()));
-            Collections.reverse(tasks_ListView.getItems());
         }
         else
         {
             Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getPriority().compareTo(y.getPriority()));
-            Collections.reverse(tasks_ListView.getItems());
         }
     }
 
@@ -515,6 +530,14 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
         // Aufgaben der Liste anzeigen
         tasks_ListView.getItems().clear();
-        tasks_ListView.getItems().addAll(list.getTasks());
+        tasksDone_ListView.getItems().clear();
+
+        for (Task task : list.getTasks()) {
+            if (task.isFinished()) {
+                tasksDone_ListView.getItems().add(task);
+            } else {
+                tasks_ListView.getItems().add(task);
+            }
+        }
     }
 }
