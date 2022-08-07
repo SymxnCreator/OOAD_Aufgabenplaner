@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<AnchorPane prefHeight="178.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.ReminderPresenter">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Presenters.ReminderPresenter">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="34.0" prefHeight="47.0" prefWidth="491.0" text="Name Aufgabe">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-40.0" layoutY="21.0" prefHeight="47.0" prefWidth="389.0" text="Titel Aufgabe">
          <font>
-            <Font size="32.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="28.0" layoutY="119.0" mnemonicParsing="false" text="Löschen" />
-      <ChoiceBox layoutX="274.0" layoutY="119.0" prefWidth="150.0" value="1 Stunde">
+      <Button id="CheckOffReminderBtn" layoutX="313.0" layoutY="32.0" mnemonicParsing="false" />
+      <ChoiceBox layoutX="174.0" layoutY="99.0" prefHeight="25.0" prefWidth="111.0" value="1 Stunde">
             <items>
                <FXCollections fx:factory="observableArrayList">
                   <String fx:value="1 Stunde" />
@@ -26,7 +27,13 @@
                </FXCollections>
             </items>
       </ChoiceBox>
-      <Label layoutX="169.0" layoutY="123.0" text="Erneut erinnern in" />
-      <Button layoutX="437.0" layoutY="119.0" mnemonicParsing="false" text="Ok" />
+      <Label layoutX="56.0" layoutY="102.0" text="Erneut erinnern in">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button id="ConfirmReReminderBtn" layoutX="313.0" layoutY="99.0" mnemonicParsing="false" />
    </children>
+   <stylesheets>
+      <URL value="@Styles/Styles.css" />
+   </stylesheets>
 </AnchorPane>

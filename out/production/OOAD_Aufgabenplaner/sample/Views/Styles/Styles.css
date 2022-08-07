@@ -1,3 +1,4 @@
+/*Farbkonstanten*/
 *{
     -fx-brightest:#9BF7FA;
     -fx-bright: #48DBE0;
@@ -14,6 +15,7 @@
 }
 
 
+/* MainView */
 
 #AddListBtn{
     -fx-background-image: url("../Resources/hinzufugen.png");
@@ -31,12 +33,80 @@
     -fx-background-color: -fx-dark;
 }
 
-#AddTaskBtn{
+
+
+/* NewGroupView */
+
+
+
+/* NewTaskView */
+
+
+
+/* ReminderView*/
+
+#CheckOffReminderBtn{
+    -fx-background-image: url("../Resources/check.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20 20;
+    -fx-background-position: center center;
+    -fx-border: none;
+    -fx-background-color: -fx-medium;
+
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+}
+
+#CheckOffReminderBtn:hover{
+    -fx-background-color: -fx-dark;
+}
+
+#ConfirmReReminderBtn{
+    -fx-background-image: url("../Resources/rotation.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20 20;
+    -fx-background-position: center center;
+    -fx-border: none;
+    -fx-background-color: -fx-grey1;
+
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+}
+
+#ConfirmReReminderBtn:hover{
+    -fx-background-color: -fx-grey2;
+}
+
+
+/* StatisticsView */
+
+.Statisticblock{
+    -fx-border-style: solid;
+    -fx-border-color: -fx-medium;
+}
+
+/* SettingsView */
+
+#MsgSendLabel{
+
+}
+
+/* Allgemeine Style Klassen*/
+
+.BlueBtn{
     -fx-background-color: -fx-medium;
 }
 
-#AddTaskBtn:hover{
+.BlueBtn:hover{
     -fx-background-color: -fx-dark;
+}
+
+.GreyBtn{
+    -fx-background-color: -fx-grey1;
+}
+
+.GreyBtn:hover{
+    -fx-background-color: -fx-grey2;
 }
 
 .MenuBtn{
@@ -52,7 +122,7 @@
 
 
 
-.Selected:focused{
+.Focused:focused{
     -fx-border-color: -fx-bright;
 }
 .noFocus{
@@ -60,7 +130,3 @@
 
 }
 
-.Statisticblock{
-    -fx-border-style: solid;
-    -fx-border-color: -fx-medium;
-}

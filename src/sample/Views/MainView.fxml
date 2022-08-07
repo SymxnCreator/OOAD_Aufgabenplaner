@@ -58,7 +58,7 @@
          </children>
       </GridPane>
       <Separator halignment="LEFT" orientation="VERTICAL" prefHeight="799.0" prefWidth="167.0" valignment="BOTTOM" GridPane.columnIndex="1" GridPane.rowSpan="2" />
-      <Button id="AddTaskBtn" mnemonicParsing="false" onAction="#openNewTaskWindow" prefHeight="53.0" prefWidth="567.0" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button id="AddTaskBtn" styleClass="BlueBtn" mnemonicParsing="false" onAction="#openNewTaskWindow" prefHeight="53.0" prefWidth="567.0" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
@@ -71,7 +71,7 @@
           <RowConstraints maxHeight="605.6666679382324" minHeight="10.0" prefHeight="553.999989827474" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ChoiceBox fx:id="filter_ChoiceBox" onAction="#filterTasks_OnAction" prefWidth="150.0" styleClass="Selected" value="Nach Datum" GridPane.halignment="RIGHT">
+            <ChoiceBox fx:id="filter_ChoiceBox" onAction="#filterTasks_OnAction" prefWidth="150.0" styleClass="Focused" value="Nach Datum" GridPane.halignment="RIGHT">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Nach Datum" />
