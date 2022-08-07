@@ -52,8 +52,8 @@
             <Insets left="30.0" right="50.0" />
          </GridPane.margin>
       </Label>
-      <!--<DatePicker fx:id="endDate_DatePicker" promptText="Datum hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
-       <ChoiceBox fx:id="notificationTime_ChoiceBox" prefHeight="25.0" prefWidth="181.0" value="Keine Erinnerung" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <DatePicker fx:id="endDate_DatePicker" promptText="Datum hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+       <ChoiceBox fx:id="notificationTime_ChoiceBox" disable="true" prefHeight="25.0" prefWidth="181.0" value="Keine Erinnerung" GridPane.columnIndex="1" GridPane.rowIndex="5">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Keine Erinnerung" />
@@ -64,7 +64,7 @@
            </items>
        </ChoiceBox>
       <TextArea fx:id="note_TextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="179.0" promptText="Notiz hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Button fx:id="AddOrUpdateTask_Button" mnemonicParsing="false" onAction="#addTask_OnAction" prefHeight="31.0" prefWidth="357.0" styleClass="BlueBtn" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+      <Button fx:id="addOrUpdateTask_Button" disable="true" mnemonicParsing="false" onAction="#addTask_OnAction" prefHeight="31.0" prefWidth="357.0" styleClass="BlueBtn" text="Aufgabe hinzufügen" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
@@ -73,7 +73,7 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="endTime_TextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="endTime_TextField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.valignment="TOP" />
       <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="TOP" />

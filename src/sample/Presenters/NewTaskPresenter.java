@@ -1,5 +1,7 @@
 package sample.Presenters;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,13 +20,14 @@ import java.util.ResourceBundle;
 
 /**
  * Steuerklasse der NewTaskView.fxml
+ * @author Simon Schnitker
  */
 public class NewTaskPresenter implements Initializable
 {
     @FXML
     Label title_Label;
     @FXML
-    Button AddOrUpdateTask_Button;
+    Button addOrUpdateTask_Button;
     @FXML
     TextField title_TextField;
     @FXML
@@ -44,6 +47,35 @@ public class NewTaskPresenter implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        title_TextField.textProperty().addListener(new ChangeListener<String>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1)
+            {
+                if (t1.isBlank())
+                {
+                    addOrUpdateTask_Button.setDisable(true);
+                }
+                else
+                {
+                    addOrUpdateTask_Button.setDisable(false);
+                }
+            }
+        });
+
+        endDate_DatePicker.valueProperty().addListener(new ChangeListener<LocalDate>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate newDate)
+            {
+                if (newDate != null)
+                {
+                    notificationTime_ChoiceBox.setDisable(false);
+                    endTime_TextField.setDisable(false);
+                }
+            }
+        });
+
         if (this.passedTask == null)
         {
             return;
@@ -85,7 +117,7 @@ public class NewTaskPresenter implements Initializable
         }
 
         this.title_Label.setText("Aufgabe bearbeiten");
-        this.AddOrUpdateTask_Button.setText("Aufgabe aktualisieren");
+        this.addOrUpdateTask_Button.setText("Aufgabe aktualisieren");
     }
 
     /**
@@ -105,7 +137,13 @@ public class NewTaskPresenter implements Initializable
     public void addTask_OnAction(ActionEvent event) throws IOException
     {
         String title = title_TextField.getText();
-        LocalDateTime endDate = endDate_DatePicker.getValue().atStartOfDay();
+
+        LocalDateTime endDate = LocalDateTime.MIN;
+        if (endDate_DatePicker.getValue() != null)
+        {
+            endDate = endDate_DatePicker.getValue().atStartOfDay();
+        }
+
         NotificationTime notificationTime = NotificationTime.Never;
         TaskPriority priority = TaskPriority.Medium;
         String note = note_TextArea.getText();

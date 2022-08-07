@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * Steuerklasse der NewTaskListView.fxml
+ * @author Simon Schnitker
  */
 public class NewTaskListPresenter
 {

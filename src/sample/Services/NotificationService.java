@@ -25,7 +25,7 @@ public class NotificationService
             return;
         }
 
-        new Thread(() ->
+        Thread thread = new Thread(() ->
         {
             while (true)
             {
@@ -50,6 +50,9 @@ public class NotificationService
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
+
+        thread.setDaemon(true);
+        thread.start();
     }
 }
