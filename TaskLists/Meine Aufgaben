@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 fddfdg;High;2022-08-12T00:00;Hour;;false
 <<<<<<< Updated upstream
 bbb;Medium;null;Never;;false
@@ -25,4 +26,10 @@ cghg;Medium;null;Never;;false
 ggg;Medium;null;Never;;false
 rzrtz;Medium;null;Never;;false
 sdfsd;Medium;null;Never;;false
+>>>>>>> Stashed changes
+=======
+1;Medium;2022-08-08T00:00;Never;;false
+2;High;2022-08-17T00:00;Never;;false
+3;Low;2022-09-02T00:00;Never;;false
+4;High;2022-09-22T00:00;Never;;true
 >>>>>>> Stashed changes
