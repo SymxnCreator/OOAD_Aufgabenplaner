@@ -94,11 +94,11 @@
             </Label>
 
 
-             <ListView id="TaskListView" fx:id="tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="315.0" prefWidth="904.0" styleClass="noFocus" GridPane.rowIndex="1" GridPane.valignment="TOP">
+             <ListView id="TaskListView" fx:id="tasks_ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="368.0" prefWidth="904.0" styleClass="noFocus" GridPane.rowIndex="1" GridPane.valignment="TOP">
 
              </ListView>
 
-             <Accordion expandedPane="$doneTask_Pane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="240.0" prefWidth="906.0" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+             <Accordion expandedPane="$doneTask_Pane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="190.0" prefWidth="906.0" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                  <panes>
                      <TitledPane fx:id="doneTask_Pane" alignment="TOP_LEFT" animated="false" text="Erledigte Aufgaben">
                          <content>
