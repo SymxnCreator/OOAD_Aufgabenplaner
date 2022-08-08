@@ -86,7 +86,7 @@
                               <Font name="System Bold" size="45.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="122.0" prefHeight="20.0" prefWidth="616.0" text="Erfolgreiste Liste" textAlignment="CENTER">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="122.0" prefHeight="20.0" prefWidth="616.0" text="Erfolgreichste Liste" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
