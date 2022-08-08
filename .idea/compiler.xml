@@ -15,7 +15,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="--add-modules javafx.application" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="OOAD_Aufgabenplaner" options="--add-exports java.datatransfer/java.awt=OOAD.Aufgabenplaner" />
+      <module name="Diekmann_Dresselhaus_Schnitker" options="--add-exports java.datatransfer/java.awt=OOAD.Aufgabenplaner" />
     </option>
   </component>
 </project>
