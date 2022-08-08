@@ -271,7 +271,6 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                     else
                     {
                         LocalDateTime dateTime = item.getEndDate();
-
                         endDate_Label.setText("Fällig am " + dateTime.getDayOfMonth() + "." + dateTime.getMonthValue() + "." + dateTime.getYear() + " um " + dateTime.getHour() + ":" + dateTime.getMinute() + " Uhr");
                     }
 
@@ -394,6 +393,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
         else
         {
             Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getPriority().compareTo(y.getPriority()));
+            Collections.reverse(tasks_ListView.getItems());
         }
     }
 
