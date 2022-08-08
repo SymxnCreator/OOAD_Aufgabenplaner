@@ -1,7 +1,28 @@
 fddfdg;High;2022-08-12T00:00;Hour;;false
+<<<<<<< Updated upstream
 bbb;Medium;null;Never;;false
 fff;Medium;null;Never;;false
 sdfsdf;Medium;null;Never;;false
 cool;Medium;2022-08-03T00:00;Day;;false
 fdgddfg;Medium;2022-08-11T00:00;Never;;false
 asdasd;Medium;2022-08-03T00:00;Never;;false
+=======
+bbb;Medium;null;Never;;true
+fff;Medium;-999999999-01-01T00:00;Never;;true
+bvn;Medium;2022-08-07T00:00;Day;;true
+gdf;Medium;2022-08-02T00:00;Hour;;true
+fgh;Medium;2022-08-02T00:00;Week;;false
+aaa;Medium;2022-08-07T00:00;Hour;;false
+bbb;Medium;2022-08-04T00:00;Day;;false
+chfgh;Medium;2022-08-05T00:00;Week;;true
+bla;Medium;null;Never;;false
+mm;Medium;2022-08-18T00:00;Never;;false
+sdfdfs;Medium;2022-08-12T00:00;Day;;false
+mmm;Medium;null;Never;;false
+ggh;Medium;null;Never;;false
+l;Medium;2022-08-25T00:00;Never;;false
+cghg;Medium;null;Never;;false
+ggg;Medium;null;Never;;false
+rzrtz;Medium;null;Never;;false
+sdfsd;Medium;null;Never;;false
+>>>>>>> Stashed changes
