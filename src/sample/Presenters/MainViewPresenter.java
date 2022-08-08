@@ -399,7 +399,6 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Zeigt die Aufgaben der angeklickten Liste auf der UI an.
-     * @author Simon Schnitker
      */
     @FXML
     public void TaskListsListView_Clicked(MouseEvent event)
