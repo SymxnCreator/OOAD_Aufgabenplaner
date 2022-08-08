@@ -75,10 +75,18 @@ public class TaskList
         return counter;
     }
 
+    /**
+     * Berechnet, wie viele Aufgaben erledigt sind in Prozent.
+     * @return Gibt die Prozentzahl zurück.
+     */
     public double sumTasksDoneInPercent() {
         return (sumTasksDone() * 100.0) / tasks.size();
     }
 
+    /**
+     * Berechnet, wie viele Aufgaben nicht erledigt sind in Prozent.
+     * @return Gibt die Prozentzahl zurück.
+     */
     public double sumTasksNotDoneInPercent() {
         return (sumTasksNotDone() * 100.0) / tasks.size();
     }

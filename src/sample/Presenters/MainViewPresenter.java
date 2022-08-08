@@ -15,8 +15,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Interfaces.TaskNotificatable;
@@ -35,6 +33,7 @@ import java.util.ResourceBundle;
 
 /**
  * Steuerklasse der MainView.fxml
+ * @author Simon Schnitker, Megan Diekmann, Dirk Dresselhaus
  */
 public class MainViewPresenter implements TaskNotificatable, Initializable
 {
@@ -42,32 +41,25 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
      * Name der Standard-Aufgabenliste, die erstellt wird, falls keine Listen vorhanden sind.
      */
     private final String DEFAULT_TASK_LIST_NAME = "Meine Aufgaben";
-    private Stage primaryStage;
 
+    @FXML
+    private Stage primaryStage;
     @FXML
     private Stage stage;
-
     @FXML
     private Scene scene;
-
     @FXML
     private Parent root;
-
     @FXML
     ListView<TaskList> taskLists_ListView;
-
     @FXML
     ListView<Task> tasks_ListView;
-
     @FXML
     ListView<Task> notifications_ListView;
-
     @FXML
     Label taskListTitle_Label;
-
     @FXML
     ChoiceBox filter_ChoiceBox;
-
     @FXML
     ListView<Task> tasksDone_ListView;
 
@@ -82,6 +74,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
     {
         PresenterLocator.taskPresenter = this;
 
+        // Definieren, wie Items der notifications_ListView dargestellt werden
         notifications_ListView.setCellFactory(o -> new ListCell<Task>()
         {
             @Override
@@ -100,6 +93,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
             }
         });
 
+        // Definieren, wie Items der taskLists_ListView dargestellt werden
         taskLists_ListView.setCellFactory(o -> new ListCell<TaskList>()
         {
             @Override
@@ -118,6 +112,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
             }
         });
 
+        // Definieren, wie Items der tasks_ListView und tasksDone_ListView dargestellt werden
         setCellFactory(tasks_ListView);
         setCellFactory(tasksDone_ListView);
 
@@ -138,9 +133,11 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
     }
 
     /**
-     * Erstellt die einzelnen Aufgabezellen der Listen.
+     * Erstellt die einzelnen Aufgabezellen der Aufgaben.
+     * @author Megan Diekmann, Simon Schnitker
      */
-    public void setCellFactory(ListView<Task> listView) {
+    public void setCellFactory(ListView<Task> listView)
+    {
         listView.setCellFactory(o -> new ListCell<Task>()
         {
             private final CheckBox checkBox = new CheckBox();
@@ -202,7 +199,6 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                     } else {
                         primaryStage.toFront();
                     }
-
                 });
 
                 deleteTask_Button.setOnAction(event ->
@@ -234,12 +230,13 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
                         tasksDone_ListView.getItems().add(task);
                         tasks_ListView.getItems().remove(task);
-                    } else {
+                    }
+                    else
+                    {
                         tasksDone_ListView.getItems().remove(task);
                         tasks_ListView.getItems().add(task);
                     }
                     filterTasks_OnAction(event);
-
 
                     try
                     {
@@ -267,7 +264,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
                     setGraphic(gridPane);
                     title_Label.setText(item.getTitle());
 
-                    if (item.getEndDate() == null || item.getEndDate() == LocalDateTime.MIN)
+                    if (item.getEndDate() == null)
                     {
                         endDate_Label.setText("Kein Enddatum");
                     }
@@ -286,6 +283,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Wechselt die Hauptansicht zu den Statistiken.
+     * @author Dirk Dresselhaus
      */
     @FXML
     public void switchToStatisticsView_OnAction(ActionEvent event)throws IOException
@@ -301,6 +299,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Wechselt die Hauptansicht zu den Einstellungen.
+     * @author Dirk Dresselhaus
      */
     @FXML
     public void switchToSettingsView_OnAction(ActionEvent event)throws IOException
@@ -316,6 +315,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Öffnet ein Fenster, um eine neue Aufgabe anzulegen.
+     * @author Dirk Dresselhaus
      */
     @FXML
     public void openNewTaskWindow(ActionEvent event) throws IOException
@@ -339,6 +339,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Öffnet ein Fenster, um eine neue Liste anzulegen.
+     * @author Dirk Dresselhaus
      */
     @FXML
     public void createTaskList_OnAction(ActionEvent event) throws IOException
@@ -362,21 +363,33 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Wird ausgelöst, wenn der Filter-Modus zum Sortieren der Aufgaben geändert wurde.
+     * @author Simon Schnitker
      */
     @FXML
     public void filterTasks_OnAction(ActionEvent event)
     {
         if (filter_ChoiceBox.getValue().toString().contentEquals("Nach Datum"))
         {
-            for (Task task : tasks_ListView.getItems())
+            // Die Aufgaben durchsuchen und schauen, welche kein Enddatum (null) besitzen. Diese werden aussortiert
+            ArrayList<Task> validTasks = new ArrayList<>();
+            ArrayList<Task> invalidTasks = new ArrayList<>();
+
+            for (Task task : this.tasks_ListView.getItems())
             {
                 if (task.getEndDate() == null)
                 {
-                    task.setEndDate(LocalDateTime.MIN);
+                    invalidTasks.add(task);
+                }
+                else
+                {
+                    validTasks.add(task);
                 }
             }
 
-            Collections.sort(tasks_ListView.getItems(), (x, y) -> x.getEndDate().compareTo(y.getEndDate()));
+            Collections.sort(validTasks, (x, y) -> x.getEndDate().compareTo(y.getEndDate()));
+            this.tasks_ListView.getItems().clear();
+            this.tasks_ListView.getItems().addAll(validTasks);
+            this.tasks_ListView.getItems().addAll(invalidTasks);
         }
         else
         {
@@ -386,9 +399,10 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Zeigt die Aufgaben der angeklickten Liste auf der UI an.
+     * @author Simon Schnitker
      */
     @FXML
-    public void GroupListView_Clicked(MouseEvent event)
+    public void TaskListsListView_Clicked(MouseEvent event)
     {
         TaskList selectedList = taskLists_ListView.getSelectionModel().getSelectedItem();
         selectTaskList(selectedList);
@@ -396,9 +410,10 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Löscht die selektierte Aufgabenliste auf dem Computer, wenn die "Entfernen"-Taste gedrückt wurde.
+     * @author Simon Schnitker
      */
     @FXML
-    public void GroupListView_OnKeyReleased(KeyEvent event)
+    public void TaskListListView_OnKeyReleased(KeyEvent event)
     {
         if (event.getCode() != KeyCode.DELETE || taskLists_ListView.getItems().size() == 1)
         {
@@ -430,6 +445,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
      * Wird von der Klasse "NewTaskPresenter" aufgerufen.
      * @param task Die hinzuzufügende Aufgabe.
      * @throws IOException
+     * @author Simon Schnitker
      */
     public void addTask(Task task) throws IOException
     {
@@ -445,6 +461,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
      * Aktualisiert die Aufgaben in der ListView und lokal auf dem Computer.
      * Wird von der Klasse "NewTaskPresenter" aufgerufen, wenn die Daten einer Aufgabe bearbeitet wurden.
      * @throws IOException
+     * @author Simon Schnitker
      */
     public void refreshTasks() throws IOException
     {
@@ -459,6 +476,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
      * Fügt eine neue Aufgabenliste hinzu.
      * Wird von der Klasse "NewGroupPresenter" aufgerufen.
      * @param name Der Name der Liste.
+     * @author Simon Schnitker
      */
     public void createTaskList(String name) throws IOException
     {
@@ -486,6 +504,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Lädt die auf dem Computer gespeicherten Aufgabenlisten und selektiert die Erste.
+     * @author Simon Schnitker
      */
     private void loadTaskLists()
     {
@@ -503,6 +522,7 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Fügt eine Standard-Aufgabenliste hinzu.
+     * @author Simon Schnitker
      */
     private void addDefaultList()
     {
@@ -521,21 +541,25 @@ public class MainViewPresenter implements TaskNotificatable, Initializable
 
     /**
      * Selektiert eine Aufgabeliste und bereitet die UI dafür auf.
-     * @param list Die Liste.
+     * @param list Die zu-selektierende Liste.
+     * @author Simon Schnitker
      */
     private void selectTaskList(TaskList list)
     {
         taskLists_ListView.getSelectionModel().select(list);
         taskListTitle_Label.setText(list.getName());
 
-        // Aufgaben der Liste anzeigen
         tasks_ListView.getItems().clear();
         tasksDone_ListView.getItems().clear();
 
-        for (Task task : list.getTasks()) {
-            if (task.isFinished()) {
+        for (Task task : list.getTasks())
+        {
+            if (task.isFinished())
+            {
                 tasksDone_ListView.getItems().add(task);
-            } else {
+            }
+            else
+            {
                 tasks_ListView.getItems().add(task);
             }
         }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Autor: Dirk Dresselhaus -->
 
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -115,7 +116,7 @@
             <Insets left="40.0" right="40.0" />
          </padding>
       </GridPane>
-       <ListView id="GroupTaskList" fx:id="taskLists_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="352.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+       <ListView id="GroupTaskList" fx:id="taskLists_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#TaskListListView_OnKeyReleased" onMouseClicked="#TaskListsListView_Clicked" prefHeight="352.0" prefWidth="215.0" styleClass="noFocus" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="70.0" />
          </GridPane.margin></ListView>
@@ -124,7 +125,7 @@
             <Insets right="-5.0" />
          </GridPane.margin>
       </Separator>
-      <ListView id="GroupTaskList" fx:id="notifications_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#GroupListView_OnKeyReleased" onMouseClicked="#GroupListView_Clicked" prefHeight="190.0" prefWidth="215.0" styleClass="noFocus" GridPane.valignment="BOTTOM" />
+      <ListView id="GroupTaskList" fx:id="notifications_ListView" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#TaskListListView_OnKeyReleased" onMouseClicked="#TaskListsListView_Clicked" prefHeight="190.0" prefWidth="215.0" styleClass="noFocus" GridPane.valignment="BOTTOM" />
       <Label text="Erinnerungen">
          <font>
             <Font size="20.0" />

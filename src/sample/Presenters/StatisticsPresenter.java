@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 /**
  * Steuerklasse der StatisticsView.fxml
+ * @author Megan Diekmann
  */
 public class StatisticsPresenter implements Initializable
 {
@@ -57,6 +58,7 @@ public class StatisticsPresenter implements Initializable
 
     /**
      * Wechselt die Hauptansicht zur MainView (Aufgabenübersicht).
+     * @author Megan Diekmann
      */
     @FXML
     public void switchToMainView_OnAction(ActionEvent event)throws IOException

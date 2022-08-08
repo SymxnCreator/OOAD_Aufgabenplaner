@@ -21,8 +21,9 @@ public class NotificationService
      */
     public static void run(TaskNotificatable consumer, List<TaskList> lists)
     {
-        if (consumer == null)
+        if (consumer == null || lists == null)
         {
+            System.out.println("NotificationService wurde abgebrochen.");
             return;
         }
 
@@ -34,7 +35,8 @@ public class NotificationService
                 {
                     for (Task task : taskList.getTasks())
                     {
-                        if (task.getNotificationTime() != NotificationTime.Never && task.hasUserNotified() == false && LocalDateTime.now().compareTo(task.getNotificationDate()) > 0)
+                        // Wenn benachrichtigt werden soll, die Aufgabe nicht bereits erledigt ist, der Benutzer noch nicht erinnert wurde und die Benachrichtigungszeit erreicht wurde
+                        if (task.getNotificationTime() != NotificationTime.Never && task.isFinished() == false && task.hasUserNotified() == false && LocalDateTime.now().compareTo(task.getNotificationDate()) > 0)
                         {
                             task.setHasUserNotified(true);
                             consumer.notifiy(task);

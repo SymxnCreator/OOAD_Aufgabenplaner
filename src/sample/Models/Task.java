@@ -68,11 +68,6 @@ public class Task
         this.note = note;
         this.isFinished = isFinished;
         this.hasUserNotified = false;
-
-        if (endDate == null)
-        {
-            this.endDate = LocalDateTime.MIN;
-        }
     }
 
     /**
@@ -82,11 +77,6 @@ public class Task
      */
     public LocalDateTime getNotificationDate()
     {
-        if (endDate == null)
-        {
-            return LocalDateTime.MIN;
-        }
-
         switch (this.notificationTime) {
             case Hour: {
                 return endDate.minusHours(1);
@@ -98,7 +88,7 @@ public class Task
                 return endDate.minusWeeks(1);
             }
             default:
-                return LocalDateTime.MIN;
+                return LocalDateTime.MAX;
         }
     }
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Autor: Dirk Dresselhaus -->
 
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -66,7 +67,7 @@
                            </FXCollections>
                        </items>
                    </ChoiceBox>
-                  <TextArea fx:id="textToSend" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
+                  <TextArea fx:id="textToSend_TextArea" layoutY="167.0" prefHeight="200.0" prefWidth="319.0" />
                   <Button layoutY="392.0" mnemonicParsing="false" onAction="#send_OnAction" styleClass="BlueBtn" text="Absenden" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />

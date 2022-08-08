@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 /**
  * Steuerklasse der NewTaskView.fxml
- * @author Simon Schnitker
+ * @author Dirk Dresselhaus, Megan Diekmann
  */
 public class NewTaskPresenter implements Initializable
 {
@@ -85,8 +85,14 @@ public class NewTaskPresenter implements Initializable
         }
 
         this.title_TextField.setText(this.passedTask.getTitle());
-        this.endDate_DatePicker.setValue(this.passedTask.getEndDate().toLocalDate());
         this.note_TextArea.setText(this.passedTask.getNote());
+
+        if (this.passedTask.getEndDate() != null)
+        {
+            this.endDate_DatePicker.setValue(this.passedTask.getEndDate().toLocalDate());
+            this.hours_Combobox.setValue(this.passedTask.getEndDate().getHour());
+            this.minutes_Combobox.setValue(this.passedTask.getEndDate().getMinute());
+        }
 
         switch (this.passedTask.getPriority())
         {
@@ -119,9 +125,6 @@ public class NewTaskPresenter implements Initializable
                 break;
         }
 
-        this.hours_Combobox.setValue(this.passedTask.getEndDate().getHour());
-        this.minutes_Combobox.setValue(this.passedTask.getEndDate().getMinute());
-
         this.title_Label.setText("Aufgabe bearbeiten");
         this.addOrUpdateTask_Button.setText("Aufgabe aktualisieren");
     }
@@ -144,16 +147,16 @@ public class NewTaskPresenter implements Initializable
     {
         String title = title_TextField.getText();
 
-        LocalDateTime endDate = LocalDateTime.MIN;
+        LocalDateTime endDate = null;
         if (endDate_DatePicker.getValue() != null)
         {
             endDate = endDate_DatePicker.getValue().atStartOfDay();
-        }
 
-        int hour = Integer.parseInt(hours_Combobox.getValue().toString());
-        int minute = Integer.parseInt(minutes_Combobox.getValue().toString());
-        endDate = endDate.plusHours(hour);
-        endDate = endDate.plusMinutes(minute);
+            int hour = Integer.parseInt(hours_Combobox.getValue().toString());
+            int minute = Integer.parseInt(minutes_Combobox.getValue().toString());
+            endDate = endDate.plusHours(hour);
+            endDate = endDate.plusMinutes(minute);
+        }
 
         NotificationTime notificationTime = NotificationTime.Never;
         TaskPriority priority = TaskPriority.Medium;

@@ -18,6 +18,7 @@ public class NewTaskListPresenter
 
     /**
      * Fügt eine neue Aufgabenliste der MainView hinzu und schließt das Fenster.
+     * @author Simon Schnitker
      */
     @FXML
     public void createTask_OnAction(ActionEvent event) throws IOException
@@ -35,6 +36,7 @@ public class NewTaskListPresenter
 
     /**
      * Bricht die Aktion ab.
+     * @author Simon Schnitker
      */
     @FXML
     public void cancel_OnAction(ActionEvent event)

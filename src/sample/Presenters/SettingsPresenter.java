@@ -14,6 +14,7 @@ import java.io.IOException;
 
 /**
  * Steuerklasse der SettingsView.fxml
+ * @author Dirk Dresselhaus
  */
 public class SettingsPresenter
 {
@@ -24,12 +25,13 @@ public class SettingsPresenter
     @FXML
     private Parent root;
     @FXML
-    TextArea textToSend;
+    TextArea textToSend_TextArea;
     @FXML
     Label MsgSend_Label;
 
     /**
      * Wechselt die Hauptansicht zur MainView (Aufgabenübersicht).
+     * @author Dirk Dresselhaus
      */
     @FXML
     public void switchToMainView_OnAction(ActionEvent event) throws IOException
@@ -45,11 +47,12 @@ public class SettingsPresenter
      * Sendet den Entwicklern die vom Bentutzer-eingegebene Nachricht.
      * (Diese Funktion dient nur zur Visualisierung)
      * @param event
+     * @author Dirk Dresselhaus
      */
     @FXML
     public void send_OnAction(ActionEvent event) throws InterruptedException
     {
-        this.textToSend.setText("");
+        this.textToSend_TextArea.setText("");
         this.MsgSend_Label.setVisible(true);
     }
 }

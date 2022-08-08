@@ -93,16 +93,10 @@ public class StorageService
         }
 
         file.createNewFile();
-
         FileWriter writer = new FileWriter(file);
 
         for (Task task : list.getTasks())
         {
-            if (task.getEndDate() == LocalDateTime.MIN)
-            {
-                task.setEndDate(null);
-            }
-
             writer.append(task.getTitle() + ";" + task.getPriority() + ";" + task.getEndDate() + ";" + task.getNotificationTime()
                     + ";" + task.getNote() + ";" + task.isFinished() + "\n");
         }
