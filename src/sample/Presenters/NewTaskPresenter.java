@@ -33,7 +33,9 @@ public class NewTaskPresenter implements Initializable
     @FXML
     DatePicker endDate_DatePicker;
     @FXML
-    TextField endTime_TextField;
+    ComboBox hours_Combobox;
+    @FXML
+    ComboBox minutes_Combobox;
     @FXML
     ChoiceBox notificationTime_ChoiceBox;
     @FXML
@@ -71,9 +73,8 @@ public class NewTaskPresenter implements Initializable
                 if (newDate != null)
                 {
                     notificationTime_ChoiceBox.setDisable(false);
-                    endTime_TextField.setDisable(false);
-                    //endTimeHours_TextField.setDisable(false);
-                    //endTimeMinutes_TextField.setDisable(false);
+                    hours_Combobox.setDisable(false);
+                    minutes_Combobox.setDisable(false);
                 }
             }
         });
@@ -118,6 +119,9 @@ public class NewTaskPresenter implements Initializable
                 break;
         }
 
+        this.hours_Combobox.setValue(this.passedTask.getEndDate().getHour());
+        this.minutes_Combobox.setValue(this.passedTask.getEndDate().getMinute());
+
         this.title_Label.setText("Aufgabe bearbeiten");
         this.addOrUpdateTask_Button.setText("Aufgabe aktualisieren");
     }
@@ -145,6 +149,11 @@ public class NewTaskPresenter implements Initializable
         {
             endDate = endDate_DatePicker.getValue().atStartOfDay();
         }
+
+        int hour = Integer.parseInt(hours_Combobox.getValue().toString());
+        int minute = Integer.parseInt(minutes_Combobox.getValue().toString());
+        endDate = endDate.plusHours(hour);
+        endDate = endDate.plusMinutes(minute);
 
         NotificationTime notificationTime = NotificationTime.Never;
         TaskPriority priority = TaskPriority.Medium;

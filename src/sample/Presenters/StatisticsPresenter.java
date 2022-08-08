@@ -52,7 +52,7 @@ public class StatisticsPresenter implements Initializable
 
         NumberOfTasksDone_Label.setText(String.valueOf(StatisticService.sumAllTasksDone(taskLists)));
         NumberOfTasksNotDone_Label.setText(String.valueOf(StatisticService.sumAllTasksNotDone(taskLists)));
-        MostSuccessfulList_Label.setText("Noice");
+        MostSuccessfulList_Label.setText(StatisticService.getMostSuccessfulList(taskLists).getName());
     }
 
     /**
